@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-sans { font-family: 'Outfit', sans-serif; }
+
+html, body {
+  background: #0d0d0d;
+  scroll-behavior: smooth;
+}
+
+html, body, a, button, [role="button"] {
+  cursor: none !important;
+}
+
+@media (max-width: 768px) {
+  html, body { cursor: auto; }
+}
+
+/* Explicitly allow text cursor over terminal area */
+.cursor-text { cursor: text !important; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; }
+
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+}
+
+.animation-pulse {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
