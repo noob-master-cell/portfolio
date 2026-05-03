@@ -53,35 +53,37 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 ${scrolled ? 'bg-black/40 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.1)] py-0' : 'bg-transparent py-6'}`}>
+      <nav aria-label="Main navigation" className={`fixed top-0 w-full z-50 transition-all duration-700 ${scrolled ? 'bg-black/40 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.1)] py-0' : 'bg-transparent py-6'}`}>
         {/* Subtle System Status Line (Top) */}
-        {scrolled && <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff5722]/20 to-transparent" />}
+        {scrolled && <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#6366f1]/20 to-transparent" />}
         
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between font-mono text-[11px] uppercase tracking-widest text-white">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between font-mono text-sm uppercase tracking-widest text-white">
           {/* Logo / Identity */}
           <a href="#home" className="flex items-center gap-3 hover:opacity-70 transition-opacity relative z-50 group">
-            <div className={`w-2 h-2 rounded-full ${activeSection === 'home' && !scrolled ? 'bg-[#ff5722]' : 'bg-[#ff5722]'} shadow-[0_0_8px_#ff572240]`} />
-            <span className="text-[10px] font-bold tracking-[0.4em] text-white/90">DHEERAJ KARWASRA</span>
+            <div className={`w-2 h-2 rounded-full ${activeSection === 'home' && !scrolled ? 'bg-[#6366f1]' : 'bg-[#6366f1]'} shadow-[0_0_8px_#6366f140]`} />
+            <span className="text-xs font-bold tracking-[0.4em] text-white/90">DHEERAJ KARWASRA</span>
           </a>
  
           {/* Desktop Nav */}
-          <div className="hidden md:flex gap-10 lowercase font-medium">
+          <div className="hidden md:flex gap-10 capitalize font-medium">
             {navLinks.map((link) => (
               <a
                 key={link}
                 href={`#${link}`}
-                className={`transition-all duration-500 relative py-2 ${activeSection === link ? 'text-[#ff5722]' : 'text-white/40 hover:text-white'}`}
+                className={`transition-all duration-500 relative py-2 ${activeSection === link ? 'text-[#6366f1]' : 'text-white/40 hover:text-white'}`}
               >
                 {link}
-                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#ff5722] transition-all duration-500 ${activeSection === link ? 'opacity-100 scale-100 shadow-[0_0_8px_#ff5722]' : 'opacity-0 scale-0'}`} />
+                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#6366f1] transition-all duration-500 ${activeSection === link ? 'opacity-100 scale-100 shadow-[0_0_8px_#6366f1]' : 'opacity-0 scale-0'}`} />
               </a>
             ))}
           </div>
  
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden relative z-50 text-white/60 hover:text-[#ff5722] transition-colors focus:outline-none font-mono text-[10px] uppercase tracking-widest"
+            className="md:hidden relative z-50 text-white/60 hover:text-[#6366f1] transition-colors focus:outline-none font-mono text-xs uppercase tracking-widest"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={menuOpen}
           >
             {menuOpen ? '[ close ]' : '[ menu ]'}
           </button>
@@ -89,9 +91,9 @@ export default function Navbar() {
       </nav>
  
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-[#0d0d0d]/98 backdrop-blur-3xl z-40 transition-transform duration-700 ease-[0.22,1,0.36,1] md:hidden flex flex-col justify-center px-12 ${menuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="flex flex-col gap-8 lowercase font-mono">
-          <div className="text-[10px] text-[#ff5722] tracking-[0.5em] uppercase mb-6 border-b border-white/5 pb-4">
+      <div className={`fixed inset-0 bg-[#030712]/98 backdrop-blur-3xl z-40 transition-transform duration-700 ease-[0.22,1,0.36,1] md:hidden flex flex-col justify-center px-12 ${menuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+        <div className="flex flex-col gap-8 capitalize font-mono">
+          <div className="text-xs text-[#6366f1] tracking-[0.2em] uppercase mb-6 border-b border-white/5 pb-4">
             terminal_access // links
           </div>
           {navLinks.map((link, i) => (
@@ -99,14 +101,14 @@ export default function Navbar() {
               key={link}
               href={`#${link}`}
               onClick={() => setMenuOpen(false)}
-              className={`transition-all duration-500 flex items-center gap-6 text-2xl ${activeSection === link ? 'text-[#ff5722]' : 'text-white/30 hover:text-white'}`}
+              className={`transition-all duration-500 flex items-center gap-6 text-2xl ${activeSection === link ? 'text-[#6366f1]' : 'text-white/30 hover:text-white'}`}
               style={{
                 transitionDelay: menuOpen ? `${i * 50 + 200}ms` : '0ms',
                 transform: menuOpen ? 'translateY(0)' : 'translateY(40px)',
                 opacity: menuOpen ? 1 : 0,
               }}
             >
-              <span className="text-[11px] text-white/10 w-8">0{i + 1}</span>
+              <span className="text-xs text-white/10 w-8">0{i + 1}</span>
               {link}
             </a>
           ))}

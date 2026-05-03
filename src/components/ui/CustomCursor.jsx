@@ -68,25 +68,25 @@ export default function CustomCursor() {
           style={{ transform: 'translate3d(-50%, -50%, 0)' }}
         >
           {/* Core Dot */}
-          <div className={`rounded-full transition-all duration-300 ${isHovering ? 'w-1 h-1 bg-white' : 'w-1.5 h-1.5 bg-[#ff5722]'}`} />
+          <div className={`rounded-full transition-all duration-300 ${isHovering ? 'w-1 h-1 bg-white' : 'w-1.5 h-1.5 bg-[#6366f1]'}`} />
           
           {/* Static Crosshair (Dim) */}
           {!isHovering && !isTextCursor && (
             <>
-              <div className="absolute w-[10px] h-[1px] bg-[#ff5722]/40" />
-              <div className="absolute h-[10px] w-[1px] bg-[#ff5722]/40" />
+              <div className="absolute w-[10px] h-[1px] bg-[#6366f1]/40" />
+              <div className="absolute h-[10px] w-[1px] bg-[#6366f1]/40" />
             </>
           )}
 
           {/* Interactive Brackets (Visible only on Hover) */}
           <div className={`absolute w-8 h-8 transition-all duration-500 ease-[0.22,1,0.36,1] ${isHovering ? 'opacity-100 scale-100' : 'opacity-0 scale-150'}`}>
-            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#ff5722]/60" />
-            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#ff5722]/60" />
-            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#ff5722]/60" />
-            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#ff5722]/60" />
+            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#6366f1]/60" />
+            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#6366f1]/60" />
+            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#6366f1]/60" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#6366f1]/60" />
             
             {/* Subtle Inner Pulse */}
-            <div className="absolute inset-2 border border-[#ff5722]/10 animate-pulse rounded-sm" />
+            <div className="absolute inset-2 border border-[#6366f1]/10 animate-pulse rounded-sm" />
           </div>
         </div>
 

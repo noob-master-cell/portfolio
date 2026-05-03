@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-.font-mono { font-family: 'JetBrains Mono', monospace; }
-.font-sans { font-family: 'Outfit', sans-serif; }
+.font-mono { font-family: 'Fira Code', monospace; }
+.font-sans { font-family: 'Inter', sans-serif; }
 
 html, body {
-  background: #0d0d0d;
+  background: #030712;
   scroll-behavior: smooth;
+  color: #f3f4f6;
 }
 
 html, body, a, button, [role="button"] {
@@ -21,9 +21,10 @@ html, body, a, button, [role="button"] {
 .cursor-text { cursor: text !important; }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #333; }
+::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4b5563; }
 
 @keyframes drawPath {
   to { stroke-dashoffset: 0; }

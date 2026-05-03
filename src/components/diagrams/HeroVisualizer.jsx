@@ -4,9 +4,9 @@ export default function HeroVisualizer() {
   return (
     <div className="w-full h-full flex items-center justify-center relative select-none">
       {/* Background Glow */}
-      <div className="absolute w-[400px] h-[400px] bg-[#ff5722] opacity-[0.03] blur-[120px] rounded-full" />
+      <div className="absolute w-[400px] h-[400px] bg-[#6366f1] opacity-[0.03] blur-[120px] rounded-full" />
       
-      <svg viewBox="0 0 200 200" className="w-[100%] max-w-[600px] drop-shadow-[0_0_15px_rgba(255,87,34,0.1)]">
+      <svg viewBox="0 0 200 200" className="w-[100%] max-w-[600px] drop-shadow-[0_0_15px_rgba(99,102,241,0.1)]">
         <defs>
           <filter id="glowSmall" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="1.5" result="blur" />
@@ -26,16 +26,16 @@ export default function HeroVisualizer() {
         {/* --- CORE DATA NODES --- */}
         <g transform="translate(100, 100)">
           {/* Central Cube (Simplified) */}
-          <path d="M-15 -10 L15 -25 L15 10 L-15 25 Z" fill="none" stroke="#ff5722" strokeWidth="1" opacity="0.6">
+          <path d="M-15 -10 L15 -25 L15 10 L-15 25 Z" fill="none" stroke="#6366f1" strokeWidth="1" opacity="0.6">
              <animate attributeName="stroke-width" values="1;2;1" dur="2s" repeatCount="indefinite" />
           </path>
-          <path d="M-15 -10 L-45 -25 L-15 -40 L15 -25 Z" fill="none" stroke="#e8e6e1" strokeWidth="0.5" />
-          <path d="M-15 -10 L-15 25 L-45 10 L-45 -25 Z" fill="none" stroke="#e8e6e1" strokeWidth="0.5" />
+          <path d="M-15 -10 L-45 -25 L-15 -40 L15 -25 Z" fill="none" stroke="#f8fafc" strokeWidth="0.5" />
+          <path d="M-15 -10 L-15 25 L-45 10 L-45 -25 Z" fill="none" stroke="#f8fafc" strokeWidth="0.5" />
           
           {/* Pulsing Nodes */}
           {[[40, -40], [-50, 20], [20, 50]].map(([x, y], i) => (
              <g key={i} transform={`translate(${x}, ${y})`}>
-                <circle r="2" fill="#ff5722" filter="url(#glowSmall)">
+                <circle r="2" fill="#6366f1" filter="url(#glowSmall)">
                    <animate attributeName="r" values="1.5;2.5;1.5" dur={`${1.5 + i}s`} repeatCount="indefinite" />
                 </circle>
                 <line x1="0" y1="0" x2={-x/2} y2={-y/2} stroke="#333" strokeWidth="0.5" strokeDasharray="2 2" />
@@ -44,7 +44,7 @@ export default function HeroVisualizer() {
         </g>
 
         {/* --- DATA STREAMS --- */}
-        <g stroke="#ff5722" strokeWidth="0.5" opacity="0.4">
+        <g stroke="#6366f1" strokeWidth="0.5" opacity="0.4">
             <path d="M10 100 L40 100" strokeDasharray="1 3">
                 <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
             </path>
@@ -56,11 +56,11 @@ export default function HeroVisualizer() {
       </svg>
 
       {/* Floating Meta Labels */}
-      <div className="absolute top-[20%] right-[10%] font-mono text-[9px] text-[#555] tracking-widest uppercase">
+      <div className="absolute top-[20%] right-[10%] font-mono text-xs text-[#555] tracking-widest uppercase">
           system.core // active<br/>
           encryption: rs256
       </div>
-      <div className="absolute bottom-[20%] left-[10%] font-mono text-[9px] text-[#555] tracking-widest uppercase">
+      <div className="absolute bottom-[20%] left-[10%] font-mono text-xs text-[#555] tracking-widest uppercase">
           node_latency: 0.04ms<br/>
           throughput: 2.4gb/s
       </div>

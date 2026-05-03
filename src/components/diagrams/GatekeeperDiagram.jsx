@@ -20,13 +20,13 @@ export default function GatekeeperDiagram() {
   ];
 
   return (
-    <svg viewBox="0 0 950 550" className="w-full h-full max-h-[700px] text-[#e8e6e1] font-sans selection:bg-transparent" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+    <svg viewBox="0 0 950 550" className="w-full h-full max-h-[700px] text-[#f8fafc] font-sans selection:bg-transparent" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
       <defs>
         <pattern id="dotGrid" width="30" height="30" patternUnits="userSpaceOnUse">
           <circle cx="2" cy="2" r="1.2" fill="rgba(255,255,255,0.03)" />
         </pattern>
         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-          <polygon points="0 0, 10 3.5, 0 7" fill="#ff5722" />
+          <polygon points="0 0, 10 3.5, 0 7" fill="#6366f1" />
         </marker>
         <marker id="arrowheadMuted" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
           <polygon points="0 0, 10 3.5, 0 7" fill="rgba(255,255,255,0.2)" />
@@ -68,8 +68,8 @@ export default function GatekeeperDiagram() {
         if (step.loop) {
           return (
              <g key={i} transform={`translate(${x1}, ${step.y})`}>
-               <path d="M 0 0 Q 30 15, 0 30" fill="none" stroke="#ff5722" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-               <text x="35" y="18" fill="#ff5722" fontSize="10px" fontWeight="800" textAnchor="start">{step.label}</text>
+               <path d="M 0 0 Q 30 15, 0 30" fill="none" stroke="#6366f1" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+               <text x="35" y="18" fill="#6366f1" fontSize="10px" fontWeight="800" textAnchor="start">{step.label}</text>
              </g>
           );
         }
@@ -81,7 +81,7 @@ export default function GatekeeperDiagram() {
               y1={step.y} 
               x2={x2} 
               y2={step.y} 
-              stroke={step.dashed ? "rgba(255,255,255,0.3)" : "#ff5722"} 
+              stroke={step.dashed ? "rgba(255,255,255,0.3)" : "#6366f1"} 
               strokeWidth="1.5"
               strokeDasharray={step.dashed ? "4 4" : "0"}
               markerEnd={step.dashed ? "url(#arrowheadMuted)" : "url(#arrowhead)"}

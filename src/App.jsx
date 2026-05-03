@@ -23,13 +23,13 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-[#e8e6e1] selection:bg-[#ff5722] selection:text-white font-sans antialiased">
+    <div className="min-h-screen bg-[#030712] text-slate-200 selection:bg-indigo-500 selection:text-white font-sans antialiased">
       <NoiseOverlay />
       <InteractiveBackground />
       <CustomCursor />
       <Navbar />
 
-      <main>
+      <main role="main">
         <Hero />
         <About />
         <Experience />

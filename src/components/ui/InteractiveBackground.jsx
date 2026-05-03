@@ -18,7 +18,7 @@ export default function InteractiveBackground() {
 
     const initParticles = () => {
       particles = [];
-      const count = Math.floor((window.innerWidth * window.innerHeight) / 12000);
+      const count = Math.min(Math.floor((window.innerWidth * window.innerHeight) / 15000), 120);
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,

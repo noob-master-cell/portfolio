@@ -6,7 +6,7 @@ export default function LinkItem({ href, label }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-1 font-mono text-xs text-[#888] hover:text-[#ff5722] transition-colors"
+      className="group flex items-center gap-1 font-mono text-xs text-[#888] hover:text-[#6366f1] transition-colors"
     >
       {label}
       <Icons.ArrowUpRight

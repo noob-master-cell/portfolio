@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { DATA } from '../../data/content';
 
 const GatekeeperAscii = () => (
-  <pre className="text-[#ff5722] text-[10px] sm:text-[12px] leading-tight my-4 overflow-x-auto font-mono">
+  <pre className="text-[#6366f1] text-xs sm:text-[12px] leading-tight my-4 overflow-x-auto font-mono">
     {` [CLIENT]
     │
     ▼
@@ -30,7 +30,7 @@ const MatrixRain = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <pre className="text-[#0f0] text-[10px] sm:text-[12px] leading-tight my-2 overflow-hidden font-mono opacity-80">
+    <pre className="text-[#0f0] text-xs sm:text-[12px] leading-tight my-2 overflow-hidden font-mono opacity-80">
       {lines.join('\\n')}
     </pre>
   );
@@ -157,7 +157,7 @@ export default function EmbeddedTerminal() {
                 ['dk source', "view site source"],
                 ['clear', 'clear terminal'],
               ].map(([c, desc]) => (
-                <div key={c}><span className="text-[#ff5722] inline-block w-32">{c}</span> — {desc}</div>
+                <div key={c}><span className="text-[#6366f1] inline-block w-32">{c}</span> — {desc}</div>
               ))}
             </div>
           )
@@ -190,7 +190,7 @@ export default function EmbeddedTerminal() {
               {DATA.experience.map((job, i) => (
                 <div key={i}>
                   <div className="text-[#e8e6e1]">{job.company} — <span className="text-[#888]">{job.role}</span></div>
-                  <div className="text-[#ff5722] text-[10px]">{job.date}</div>
+                  <div className="text-[#6366f1] text-xs">{job.date}</div>
                 </div>
               ))}
             </div>
@@ -206,7 +206,7 @@ export default function EmbeddedTerminal() {
         setHistory(prev => [...prev, {
           type: 'output', content: (
             <div className="flex gap-6 my-4">
-              <pre className="text-[#ff5722] font-mono leading-none hidden sm:block">
+              <pre className="text-[#6366f1] font-mono leading-none hidden sm:block">
 {`
    .---.
   /     \\
@@ -216,12 +216,12 @@ export default function EmbeddedTerminal() {
 `}
             </pre>
               <div className="flex flex-col gap-1">
-                <div><span className="text-[#ff5722] font-bold">host</span>: {DATA.identity.name}</div>
-                <div><span className="text-[#ff5722] font-bold">os</span>: dheerajOS v2.0.4</div>
-                <div><span className="text-[#ff5722] font-bold">uptime</span>: ∞</div>
-                <div><span className="text-[#ff5722] font-bold">packages</span>: 998 (npm), 143 (pip)</div>
-                <div><span className="text-[#ff5722] font-bold">shell</span>: zsh 5.9</div>
-                <div><span className="text-[#ff5722] font-bold">location</span>: {DATA.identity.location}</div>
+                <div><span className="text-[#6366f1] font-bold">host</span>: {DATA.identity.name}</div>
+                <div><span className="text-[#6366f1] font-bold">os</span>: dheerajOS v2.0.4</div>
+                <div><span className="text-[#6366f1] font-bold">uptime</span>: ∞</div>
+                <div><span className="text-[#6366f1] font-bold">packages</span>: 998 (npm), 143 (pip)</div>
+                <div><span className="text-[#6366f1] font-bold">shell</span>: zsh 5.9</div>
+                <div><span className="text-[#6366f1] font-bold">location</span>: {DATA.identity.location}</div>
               </div>
             </div>
           )
@@ -277,7 +277,7 @@ export default function EmbeddedTerminal() {
             const cleaned = prev.filter(item => item.id !== 'loading-stats');
             return [...cleaned, {
               type: 'output', content: (
-                <div className="flex flex-col gap-1 my-2 border-l-2 border-[#ff5722] pl-4">
+                <div className="flex flex-col gap-1 my-2 border-l-2 border-[#6366f1] pl-4">
                   <div><span className="text-[#888] inline-block w-36">github repos:</span> {data.public_repos || 24}</div>
                   <div><span className="text-[#888] inline-block w-36">github followers:</span> {data.followers || 12}</div>
                   <div><span className="text-[#888] inline-block w-36">leetcode solved:</span> 450+ (top 5%)</div>
@@ -315,15 +315,15 @@ export default function EmbeddedTerminal() {
   };
 
   return (
-    <div className="w-full h-[400px] md:h-[500px] bg-[#111] border border-[#333] flex flex-col font-mono text-[12px] md:text-[13px] text-[#e8e6e1] relative overflow-hidden group shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-shadow hover:shadow-[0_0_30px_rgba(255,87,34,0.1)]">
+    <div className="w-full h-[400px] md:h-[500px] bg-[#111] border border-[#333] flex flex-col font-mono text-[12px] md:text-[13px] text-[#e8e6e1] relative overflow-hidden group shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-shadow hover:shadow-[0_0_30px_rgba(99,102,241,0.1)]">
       {/* Terminal Header */}
-      <div className="h-8 border-b border-[#333] bg-[#0d0d0d] flex items-center justify-between px-4 shrink-0 selection:bg-transparent">
+      <div className="h-8 border-b border-[#333] bg-[#030712] flex items-center justify-between px-4 shrink-0 selection:bg-transparent">
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
           <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
           <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
         </div>
-        <div className="text-[10px] text-[#888] uppercase tracking-widest">sys.term // active</div>
+        <div className="text-xs text-[#888] uppercase tracking-widest">sys.term // active</div>
       </div>
 
       {/* Terminal Body */}
@@ -339,7 +339,7 @@ export default function EmbeddedTerminal() {
           ))}
           {!isBooting && (
             <div className="flex gap-2 mt-2 items-center">
-              <span className="text-[#ff5722] shrink-0 font-bold">guest@dkarwasra:~$</span>
+              <span className="text-[#6366f1] shrink-0 font-bold">guest@dkarwasra:~$</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -347,7 +347,7 @@ export default function EmbeddedTerminal() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={isFetching || isBooting}
-                className="flex-1 bg-transparent border-none outline-none text-[#e8e6e1] caret-[#ff5722] w-full min-w-0 placeholder-[#333]"
+                className="flex-1 bg-transparent border-none outline-none text-[#e8e6e1] caret-[#6366f1] w-full min-w-0 placeholder-[#333]"
                 placeholder="type 'dk help' (use Tab for autocomplete, ↑/↓ for history)"
                 spellCheck="false"
                 autoComplete="off"
