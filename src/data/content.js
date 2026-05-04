@@ -3,7 +3,7 @@ export const DATA = {
     name: "Dheeraj Karwasra",
     model: "Software Engineer",
     title: "Software Engineer @ Fraunhofer · M.Sc. CS @ RPTU",
-    tagline: "I build scalable, fault-tolerant systems — from multi-agent AI pipelines to distributed microservices on AWS.",
+    tagline: "I engineer backend systems and AI pipelines that move metrics — 80% less manual processing at Fraunhofer, 19% better cash-flow forecasting at HighRadius.",
     availability: "Currently open to Software Engineer, Backend Engineer, and AI Engineer roles in Germany & the EU. Let's connect — I'd love to discuss how I can contribute to your engineering team.",
     location: "Kaiserslautern, Germany",
     email: "karwasra.dheeraj28@gmail.com",
@@ -82,7 +82,7 @@ export const DATA = {
       subtitle: "BeyondCorp-Grade Reverse Proxy Gateway",
       description: "A production-grade security gateway enforcing zero-trust principles at the edge. Engineered a high-performance proxy in Python 3.11 with FastAPI, featuring RS256 JWT validation, priority-ordered RBAC, and a real-time audit engine streaming traffic telemetry to Redis.",
       date: "Jan 2025 — Feb 2025",
-      isDark: true,
+      isDark: false,
       diagramType: "gatekeeper",
       metrics: [
         { val: "< 2ms", label: "Auth Latency" },
@@ -92,7 +92,7 @@ export const DATA = {
       tech: "Python 3.11, FastAPI, Redis, PostgreSQL, React 18, TypeScript",
       links: [
         { label: "GitHub Repository", url: "https://github.com/noob-master-cell/Gatekeeper" },
-        { label: "Architecture Docs", url: "#" }
+        { label: "Live Dashboard", url: "https://dashboard-production-5a2f.up.railway.app/" }
       ]
     },
     {
@@ -100,7 +100,7 @@ export const DATA = {
       subtitle: "Centralized Management for Student Associations",
       description: "A unified architecture for the Erasmus Student Network (ESN) managing full event lifecycles. Engineered a decoupled monorepo with a NestJS GraphQL backend and React frontend, featuring a custom query complexity guard, Prisma-driven relational data, and Redis-backed tiered rate limiting.",
       date: "Aug 2024 — Nov 2024",
-      isDark: false,
+      isDark: true,
       diagramType: "performance",
       metrics: [
         { val: "1000", label: "Complexity Limit" },
@@ -122,12 +122,6 @@ export const DATA = {
       link: "https://github.com/noob-master-cell/LocalMart"
     },
     {
-      title: "Twitter Dashboard",
-      description: "Real-time Twitter analytics dashboard with data visualization and social media metrics tracking.",
-      tech: "JavaScript, React, APIs",
-      link: "https://github.com/noob-master-cell/twitter-dashboard"
-    },
-    {
       title: "ByteSphere",
       description: "A full-stack blog platform with content management, user authentication, and responsive design.",
       tech: "JavaScript, Node.js, MongoDB",
@@ -140,28 +134,10 @@ export const DATA = {
       link: "https://github.com/noob-master-cell/StudentPerformancePredictor"
     },
     {
-      title: "Depression Detection",
-      description: "NLP pipeline analyzing textual data for early detection of suicide and depression using deep learning classifiers.",
-      tech: "Python, NLP, Jupyter",
-      link: "https://github.com/noob-master-cell/Analyzing-Textual-Data-for-Early-Detection-of-Suicide-and-Depression"
-    },
-    {
-      title: "Image Caption Gen",
-      description: "Deep learning model that generates natural language captions for images using CNN-LSTM architecture.",
-      tech: "Python, TensorFlow, Keras",
-      link: "https://github.com/noob-master-cell/Image-Caption-Generator"
-    },
-    {
       title: "Path Finder",
       description: "Interactive pathfinding algorithm visualizer with Dijkstra, A*, BFS, and DFS implementations on a grid.",
       tech: "JavaScript, React, Algorithms",
       link: "https://github.com/noob-master-cell/Path-Finder"
-    },
-    {
-      title: "News Time",
-      description: "A news aggregation app with category-based filtering and real-time updates from multiple sources.",
-      tech: "JavaScript, React, News API",
-      link: "https://github.com/noob-master-cell/news-time"
     }
   ],
   education: [

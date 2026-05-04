@@ -188,7 +188,7 @@ export default function Projects() {
             links={project.links}
           />
         ))}
-        <OtherProjectsScreen number={DATA.featuredProjects.length + 1} isDark={true} />
+        <OtherProjectsScreen number={DATA.featuredProjects.length + 1} isDark={false} />
       </div>
     </section>
   );

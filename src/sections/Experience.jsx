@@ -52,14 +52,25 @@ export default function Experience() {
                     <div className="mt-8">
                       {/* Execution Logs - Full Width Focus */}
                       <div className="font-mono text-xs text-white/10 uppercase tracking-[0.2em] mb-5">trace_output</div>
-                      <ul className="flex flex-col gap-2.5 font-mono text-xs text-white/40">
+                      <ul className="flex flex-col gap-3 font-sans text-sm text-white/55 leading-relaxed">
                         {job.logs?.map((log, idx) => (
-                          <li key={idx} className="flex gap-3 group-hover:text-[#888] transition-all">
-                            <span className="text-[#1a1a1a] group-hover:text-[#6366f1] shrink-0 font-bold">{'>'}</span>
-                            <span className="opacity-80 group-hover:opacity-100">{log}</span>
+                          <li key={idx} className="flex gap-3 group-hover:text-white/70 transition-all">
+                            <span className="text-[#6366f1] shrink-0 font-bold mt-0.5">{'▹'}</span>
+                            <span>{log}</span>
                           </li>
                         ))}
                       </ul>
+
+                      {/* Tech Stack Tags */}
+                      {job.tech && job.tech.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-6 pt-5 border-t border-white/5">
+                          {job.tech.map((t, tIdx) => (
+                            <span key={tIdx} className="px-3 py-1 font-mono text-xs text-[#6366f1]/70 border border-[#6366f1]/15 bg-[#6366f1]/5 rounded-sm group-hover:border-[#6366f1]/30 group-hover:text-[#6366f1] transition-colors">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

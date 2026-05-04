@@ -56,7 +56,7 @@ export default function Skills() {
       </div>
 
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
-        <SectionLabel text="capabilities / technical_stack" />
+        <div className="font-mono text-xs uppercase tracking-[0.4em] mb-12 text-black/30 select-none">capabilities / technical_stack</div>
 
         {/* 3-column grid on desktop, 2 on tablet, 1 on mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16">

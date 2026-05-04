@@ -63,6 +63,10 @@ export default function Navbar() {
             <div className={`w-2 h-2 rounded-full ${activeSection === 'home' && !scrolled ? 'bg-[#6366f1]' : 'bg-[#6366f1]'} shadow-[0_0_8px_#6366f140]`} />
             <span className="text-xs font-bold tracking-[0.4em] text-white/90">DHEERAJ KARWASRA</span>
           </a>
+          <div className="hidden sm:flex items-center gap-2 ml-2 px-3 py-1 border border-[#22c55e]/20 bg-[#22c55e]/5 rounded-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" />
+            <span className="font-mono text-[10px] text-[#22c55e] uppercase tracking-widest font-bold">Open to Work · EU</span>
+          </div>
  
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-10 capitalize font-medium">
