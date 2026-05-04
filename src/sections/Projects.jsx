@@ -1,4 +1,5 @@
 import GatekeeperDiagram from '../components/diagrams/GatekeeperDiagram';
+import NexusDiagram from '../components/diagrams/NexusDiagram';
 import PerformanceChart from '../components/diagrams/PerformanceChart';
 import { DATA } from '../data/content';
 import { Icons } from '../components/ui/Icons';
@@ -162,6 +163,7 @@ const OtherProjectsScreen = ({ number, isDark }) => {
 export default function Projects() {
   const getDiagramComponent = (type) => {
     switch(type) {
+      case 'nexus': return NexusDiagram;
       case 'gatekeeper': return GatekeeperDiagram;
       case 'performance': return PerformanceChart;
       default: return GatekeeperDiagram;

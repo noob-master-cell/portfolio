@@ -61,6 +61,23 @@ export const DATA = {
   ],
   featuredProjects: [
     {
+      title: "Nexus",
+      subtitle: "Agentic Document Intelligence — Local RAG",
+      description: "A privacy-first RAG system where embedding, retrieval, generation, and evaluation all run locally. Features a 7-stage retrieval pipeline with HyDE expansion, hybrid search (dense vectors + BM25), RRF fusion, MMR re-ranking, agentic query routing, and post-generation faithfulness evaluation — all powered by Ollama with zero cloud dependency.",
+      date: "Apr 2026 — Present",
+      isDark: true,
+      diagramType: "nexus",
+      metrics: [
+        { val: "7", label: "Pipeline Stages" },
+        { val: "4", label: "Chunk Strategies" },
+        { val: "100%", label: "Local / Private" }
+      ],
+      tech: "Python, FastAPI, React, ChromaDB, Ollama, SQLite, SSE Streaming",
+      links: [
+        { label: "GitHub Repository", url: "https://github.com/noob-master-cell/Nexus-Agentic-Document-Intelligence" }
+      ]
+    },
+    {
       title: "Gatekeeper Zero-Trust",
       subtitle: "BeyondCorp-Grade Reverse Proxy Gateway",
       description: "A production-grade security gateway enforcing zero-trust principles at the edge. Engineered a high-performance proxy in Python 3.11 with FastAPI, featuring RS256 JWT validation, priority-ordered RBAC, and a real-time audit engine streaming traffic telemetry to Redis.",
@@ -99,28 +116,52 @@ export const DATA = {
   ],
   otherProjects: [
     {
-      title: "Nebulous",
-      description: "A high-performance distributed key-value store built from scratch with Raft consensus for fault tolerance.",
-      tech: "C++, gRPC, Raft Consensus",
-      link: "#"
+      title: "LocalMart",
+      description: "A community marketplace web app enabling local buying, selling, and a lost & found section. Built with Firebase for auth, Firestore, and storage.",
+      tech: "React, Vite, Tailwind, Firebase",
+      link: "https://github.com/noob-master-cell/LocalMart"
     },
     {
-      title: "Kronos",
-      description: "Real-time anomaly detection engine for time-series infrastructure metrics with alerting pipelines.",
-      tech: "Python, PyTorch, InfluxDB",
-      link: "#"
+      title: "Twitter Dashboard",
+      description: "Real-time Twitter analytics dashboard with data visualization and social media metrics tracking.",
+      tech: "JavaScript, React, APIs",
+      link: "https://github.com/noob-master-cell/twitter-dashboard"
     },
     {
-      title: "Aether Terminal",
-      description: "Web-based terminal emulator with custom shell scripting support and plugin architecture.",
-      tech: "TypeScript, xterm.js, React",
-      link: "#"
+      title: "ByteSphere",
+      description: "A full-stack blog platform with content management, user authentication, and responsive design.",
+      tech: "JavaScript, Node.js, MongoDB",
+      link: "https://github.com/noob-master-cell/ByteSphere"
     },
     {
-      title: "Synth-Weave",
-      description: "Procedural texture generator for 3D assets using deep learning and real-time WebGL rendering.",
-      tech: "Python, TensorFlow, WebGL",
-      link: "#"
+      title: "Student Predictor",
+      description: "ML-powered exam score prediction system using ensemble models with a web-based inference interface.",
+      tech: "Python, scikit-learn, Flask",
+      link: "https://github.com/noob-master-cell/StudentPerformancePredictor"
+    },
+    {
+      title: "Depression Detection",
+      description: "NLP pipeline analyzing textual data for early detection of suicide and depression using deep learning classifiers.",
+      tech: "Python, NLP, Jupyter",
+      link: "https://github.com/noob-master-cell/Analyzing-Textual-Data-for-Early-Detection-of-Suicide-and-Depression"
+    },
+    {
+      title: "Image Caption Gen",
+      description: "Deep learning model that generates natural language captions for images using CNN-LSTM architecture.",
+      tech: "Python, TensorFlow, Keras",
+      link: "https://github.com/noob-master-cell/Image-Caption-Generator"
+    },
+    {
+      title: "Path Finder",
+      description: "Interactive pathfinding algorithm visualizer with Dijkstra, A*, BFS, and DFS implementations on a grid.",
+      tech: "JavaScript, React, Algorithms",
+      link: "https://github.com/noob-master-cell/Path-Finder"
+    },
+    {
+      title: "News Time",
+      description: "A news aggregation app with category-based filtering and real-time updates from multiple sources.",
+      tech: "JavaScript, React, News API",
+      link: "https://github.com/noob-master-cell/news-time"
     }
   ],
   education: [
