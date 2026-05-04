@@ -57,12 +57,12 @@ export default function HeroVisualizer() {
 
       {/* Floating Meta Labels */}
       <div className="absolute top-[20%] right-[10%] font-mono text-xs text-[#555] tracking-widest uppercase">
-          system.core // active<br/>
-          encryption: rs256
+          software_engineer // 2026<br/>
+          distributed · ai · backend
       </div>
       <div className="absolute bottom-[20%] left-[10%] font-mono text-xs text-[#555] tracking-widest uppercase">
-          node_latency: 0.04ms<br/>
-          throughput: 2.4gb/s
+          m.sc_cs @ rptu<br/>
+          kaiserslautern, germany
       </div>
       
       {/* Corner Brackets */}

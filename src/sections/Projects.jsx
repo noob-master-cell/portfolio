@@ -12,7 +12,7 @@ const ProjectScreen = ({ number, title, subtitle, date, description, isDark, Dia
   const textMuted = 'text-[#888]';
 
   return (
-    <div className={`relative w-full min-h-screen md:h-screen flex flex-col justify-center overflow-y-auto md:overflow-hidden ${bgClass} py-16 md:py-0`}>
+    <div className={`relative w-full min-h-screen md:h-screen flex flex-col justify-center overflow-x-hidden md:overflow-hidden ${bgClass} py-16 md:py-0`}>
       <div className="max-w-[1440px] w-full mx-auto px-6 lg:px-12 grid grid-cols-12 gap-8 relative z-10">
         {/* Ghost number - Refined for mobile safety */}
         <div className={`absolute -top-32 md:-top-48 -left-20 md:-left-12 text-[250px] md:text-[400px] font-bold opacity-[0.015] md:opacity-[0.02] scale-75 md:scale-100 select-none pointer-events-none font-sans leading-none tracking-tighter ${isDark ? 'text-white' : 'text-black'}`}>
@@ -47,7 +47,7 @@ const ProjectScreen = ({ number, title, subtitle, date, description, isDark, Dia
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 bg-[#6366f1] text-white font-mono text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#6366f1] transition-all duration-300 rounded-sm"
                 >
-                  {link.label.includes('github') ? <Icons.Github width={14} height={14} /> : <Icons.ExternalLink width={14} height={14} />}
+                  {link.label.toLowerCase().includes('github') ? <Icons.Github width={14} height={14} /> : <Icons.ExternalLink width={14} height={14} />}
                   {link.label}
                 </a>
               ))}
@@ -108,7 +108,7 @@ const ProjectScreen = ({ number, title, subtitle, date, description, isDark, Dia
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-5 py-3 bg-[#6366f1] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-sm active:scale-95 transition-all w-full justify-center"
                 >
-                  {link.label.includes('github') ? <Icons.Github width={14} height={14} /> : <Icons.ExternalLink width={14} height={14} />}
+                  {link.label.toLowerCase().includes('github') ? <Icons.Github width={14} height={14} /> : <Icons.ExternalLink width={14} height={14} />}
                   {link.label}
                 </a>
               ))}
@@ -126,7 +126,7 @@ const OtherProjectsScreen = ({ number, isDark }) => {
   const textMuted = 'text-[#888]';
 
   return (
-    <div className={`relative w-full min-h-screen md:h-screen flex flex-col justify-center overflow-y-auto md:overflow-hidden ${bgClass} py-16 md:py-0`}>
+    <div className={`relative w-full min-h-screen md:h-screen flex flex-col justify-center overflow-x-hidden md:overflow-hidden ${bgClass} py-16 md:py-0`}>
       <div className="max-w-[1440px] w-full mx-auto px-6 lg:px-12 relative z-10">
         {/* Ghost number - Refined for mobile safety */}
         <div className={`absolute -top-32 md:-top-48 -left-20 md:-left-12 text-[250px] md:text-[400px] font-medium opacity-[0.015] md:opacity-[0.03] scale-75 md:scale-100 select-none pointer-events-none font-sans leading-none tracking-tighter ${isDark ? 'text-white' : 'text-black'}`}>
@@ -138,9 +138,11 @@ const OtherProjectsScreen = ({ number, isDark }) => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {DATA.otherProjects.map((proj, i) => (
-              <a 
-                key={i} 
+              <a
+                key={i}
                 href={proj.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`flex flex-col border ${borderClass} p-6 h-full transition-colors duration-300 hover:border-[#6366f1] group relative`}
               >
                 <div className={`absolute top-0 right-0 w-2 h-2 border-t border-r ${borderClass} group-hover:border-[#6366f1] transition-colors`} />

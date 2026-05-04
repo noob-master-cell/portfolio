@@ -60,7 +60,7 @@ export default function Navbar() {
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between font-mono text-sm uppercase tracking-widest text-white">
           {/* Logo / Identity */}
           <a href="#home" className="flex items-center gap-3 hover:opacity-70 transition-opacity relative z-50 group">
-            <div className={`w-2 h-2 rounded-full ${activeSection === 'home' && !scrolled ? 'bg-[#6366f1]' : 'bg-[#6366f1]'} shadow-[0_0_8px_#6366f140]`} />
+            <div className="w-2 h-2 rounded-full bg-[#6366f1] shadow-[0_0_8px_#6366f140]" />
             <span className="text-xs font-bold tracking-[0.4em] text-white/90">DHEERAJ KARWASRA</span>
           </a>
           <div className="hidden sm:flex items-center gap-2 ml-2 px-3 py-1 border border-[#22c55e]/20 bg-[#22c55e]/5 rounded-full">

@@ -52,9 +52,9 @@ export default function Experience() {
                     <div className="mt-8">
                       {/* Execution Logs - Full Width Focus */}
                       <div className="font-mono text-xs text-white/10 uppercase tracking-[0.2em] mb-5">trace_output</div>
-                      <ul className="flex flex-col gap-3 font-sans text-sm text-white/55 leading-relaxed">
+                      <ul className="flex flex-col gap-3 font-sans text-sm text-white/70 leading-relaxed">
                         {job.logs?.map((log, idx) => (
-                          <li key={idx} className="flex gap-3 group-hover:text-white/70 transition-all">
+                          <li key={idx} className="flex gap-3 group-hover:text-white/90 transition-all">
                             <span className="text-[#6366f1] shrink-0 font-bold mt-0.5">{'▹'}</span>
                             <span>{log}</span>
                           </li>

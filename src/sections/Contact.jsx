@@ -26,9 +26,9 @@ export default function Contact() {
     },
     { 
       label: 'leetcode', 
-      value: 'dheeraj_k', 
-      url: DATA.identity.links.find(l => l.label === 'leetcode')?.url, 
-      icon: Icons.Send,
+      value: 'dheerajkarwasra',
+      url: DATA.identity.links.find(l => l.label === 'leetcode')?.url,
+      icon: Icons.Terminal,
       sub: 'algo_profiling'
     },
     { 
@@ -63,7 +63,7 @@ export default function Contact() {
             {DATA.identity.availability}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {contactMethods.map((method, i) => (
               <a 
                 key={i}

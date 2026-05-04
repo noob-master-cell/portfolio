@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { DATA } from '../data/content';
 import HeroVisualizer from '../components/diagrams/HeroVisualizer';
@@ -9,6 +9,17 @@ import { Icons } from '../components/ui/Icons';
 export default function Hero() {
   const [ref, isVisible] = useIntersectionObserver();
   const [showTerminal, setShowTerminal] = useState(false);
+
+  useEffect(() => {
+    const handle = (e) => {
+      setShowTerminal(false);
+      setTimeout(() => {
+        document.getElementById(e.detail.section)?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    };
+    window.addEventListener('terminal-navigate', handle);
+    return () => window.removeEventListener('terminal-navigate', handle);
+  }, []);
 
   return (
     <section id="home" className="relative w-full h-screen bg-[#030712] text-[#f8fafc] flex items-center overflow-hidden">
@@ -23,8 +34,9 @@ export default function Hero() {
           className={`col-span-12 md:col-start-2 md:col-span-6 flex flex-col justify-center transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
         >
           <div className="font-mono text-xs text-[#666] mb-8 tracking-widest uppercase flex items-center gap-2">
-            <span className="w-8 h-[1px] bg-[#333]" />
-            {DATA.identity.title} — 2026
+            <span className="w-8 h-[1px] bg-[#333] hidden sm:block shrink-0" />
+            <span className="hidden sm:inline">{DATA.identity.title} — 2026</span>
+            <span className="sm:hidden">{DATA.identity.model}</span>
           </div>
           <h1 className="text-[42px] sm:text-[60px] md:text-[86px] leading-[0.9] md:leading-[0.85] tracking-tighter font-bold mb-8 md:mb-10 capitalize text-white">
             {DATA.identity.name}
@@ -33,7 +45,7 @@ export default function Hero() {
             &quot;{DATA.identity.tagline}&quot;
           </p>
           
-          <div className="flex flex-wrap gap-8 md:gap-10 items-center mb-20 md:mb-16">
+          <div className="flex flex-wrap gap-8 md:gap-10 items-center mb-12 md:mb-16">
             <button 
               onClick={() => setShowTerminal(true)}
               className="group flex items-center gap-4 cursor-pointer relative"
@@ -101,18 +113,14 @@ export default function Hero() {
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-6 md:p-12 animate-in fade-in zoom-in duration-500">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setShowTerminal(false)} />
           <div className="relative w-full max-w-4xl max-h-[80vh] bg-[#030712] border border-[#6366f1]/30 shadow-[0_0_50px_rgba(99,102,241,0.2)] rounded-lg overflow-hidden flex flex-col">
-             <div className="h-10 bg-[#111] border-b border-[#333] flex items-center justify-between px-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 rounded-full bg-[#6366f1] animate-pulse" />
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#666]">secure_shell // session_active</span>
+             <div className="h-10 bg-[#111] border-b border-[#1a1a1a] flex items-center justify-between px-4 shrink-0">
+                <div className="flex items-center gap-2">
+                  <button onClick={() => setShowTerminal(false)} className="w-3 h-3 rounded-full bg-[#ff5f56] hover:opacity-80 transition-opacity" aria-label="Close terminal" />
+                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
                 </div>
-                <button 
-                  onClick={() => setShowTerminal(false)}
-                  className="text-[#666] hover:text-white transition-colors"
-                  aria-label="Close terminal"
-                >
-                  <Icons.X width={18} height={18} />
-                </button>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#333]">guest@dkarwasra — dk-shell</span>
+                <div className="w-16" />
              </div>
              <div className="flex-1 overflow-hidden">
                 <EmbeddedTerminal />
@@ -128,9 +136,6 @@ export default function Hero() {
       
       <div className="absolute bottom-12 left-6 lg:left-12 font-mono text-xs text-[#555] tracking-widest uppercase">
           geoloc: {DATA.identity.location.toLowerCase().replace(/ /g, '_')}
-      </div>
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 font-mono text-xs text-[#222] tracking-[0.5em] uppercase hidden lg:block">
-          encryption_active // system_secure
       </div>
     </section>
   );

@@ -8,12 +8,11 @@ export default function About() {
   const barPattern = useMemo(() => [...Array(24)].map(() => Math.random() > 0.3), []);
 
   return (
-    <section id="about" className="w-full pt-10 pb-16 md:py-[180px] bg-[#f8fafc] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] text-[#0f172a] relative border-y border-[#e2e8f0]">
-       <div className="absolute top-12 right-12 font-mono text-xs text-[#ccc] tracking-[0.2em] uppercase hidden lg:block">dossier_id: dk_operator_p1 // encrypted</div>
+    <section id="about" className="w-full py-16 md:py-[180px] bg-[#f8fafc] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] text-[#0f172a] relative border-y border-[#e2e8f0]">
       <div className="max-w-[1440px] mx-auto px-8 md:px-10 lg:px-12">
         <div className="font-mono text-xs uppercase tracking-[0.4em] mb-4 md:mb-12 text-black/30 select-none">about / system dossier</div>
 
-        <div ref={ref} className="grid grid-cols-12 gap-12 lg:gap-12 mt-4 md:mt-24">
+        <div ref={ref} className="grid grid-cols-12 gap-8 lg:gap-12 mt-8 md:mt-24">
           
           {/* Column 1: Metadata Sidebar (col-span-12 md:col-span-3) */}
           <div className={`col-span-12 md:col-span-3 pr-0 md:pr-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
@@ -29,8 +28,8 @@ export default function About() {
                     <div className="font-mono text-sm text-[#1a1a1a] uppercase">{DATA.identity.location.replace(/ /g, '_')}</div>
                  </div>
                  <div>
-                    <div className="font-mono text-xs text-black/50 tracking-widest uppercase mb-1">privilege</div>
-                    <div className="font-mono text-sm text-[#6366f1] font-bold uppercase tracking-wider">root_administrator</div>
+                    <div className="font-mono text-xs text-black/50 tracking-widest uppercase mb-1">focus</div>
+                    <div className="font-mono text-sm text-[#6366f1] font-bold uppercase tracking-wider">distributed_systems · ai</div>
                  </div>
                  <div className="pt-8 border-t border-black/10">
                     <div className="font-mono text-xs text-black/50 tracking-widest uppercase mb-4">authenticity_trace</div>
@@ -73,7 +72,7 @@ export default function About() {
           </div>
 
           {/* Column 3: Academic Timeline (col-span-12 md:col-span-4) */}
-          <div className={`col-span-12 md:col-span-4 pl-0 md:pl-20 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+          <div className={`col-span-12 md:col-span-4 pl-0 md:pl-8 lg:pl-16 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
             <div className="relative">
               <div className="absolute top-0 bottom-0 left-0 w-[1px] bg-black/10" />
               

@@ -2,7 +2,7 @@ export const DATA = {
   identity: {
     name: "Dheeraj Karwasra",
     model: "Software Engineer",
-    title: "Software Engineer @ Fraunhofer · M.Sc. CS @ RPTU",
+    title: "M.Sc. CS @ RPTU · Software Engineer",
     tagline: "I engineer backend systems and AI pipelines that move metrics — 80% less manual processing at Fraunhofer, 19% better cash-flow forecasting at HighRadius.",
     availability: "Currently open to Software Engineer, Backend Engineer, and AI Engineer roles in Germany & the EU. Let's connect — I'd love to discuss how I can contribute to your engineering team.",
     location: "Kaiserslautern, Germany",
@@ -30,7 +30,7 @@ export const DATA = {
   experience: [
     {
       company: "Fraunhofer",
-      status: "active",
+      status: "archived",
       role: "Software Developer — AI & Automation",
       date: "Sep 2025 — Feb 2026",
       logs: [
