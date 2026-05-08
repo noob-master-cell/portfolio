@@ -55,8 +55,8 @@ export const DATA = {
     }
   ],
   coursework: [
-    "Distributed Systems", "System Design", "Machine Learning", 
-    "Data Structures & Algorithms", "Cloud Computing", 
+    "Distributed Systems", "System Design", "Machine Learning",
+    "Data Structures & Algorithms", "Cloud Computing",
     "Database Management", "Operating Systems", "Object-Oriented Programming"
   ],
   featuredProjects: [
@@ -80,16 +80,16 @@ export const DATA = {
     {
       title: "Gatekeeper Zero-Trust",
       subtitle: "BeyondCorp-Grade Reverse Proxy Gateway",
-      description: "A production-grade security gateway enforcing zero-trust principles at the edge. Engineered a high-performance proxy in Python 3.11 with FastAPI, featuring RS256 JWT validation, priority-ordered RBAC, and a real-time audit engine streaming traffic telemetry to Redis.",
-      date: "Jan 2025 — Feb 2025",
+      description: "A zero-trust reverse proxy inspired by Google BeyondCorp, enforcing identity verification on every request. Nine-layer middleware pipeline: RS256 JWT + JWKS rotation, per-IP/per-key rate limiting, OPA policy engine with Rego, Redis session store with instant revocation, and full OpenTelemetry tracing with Prometheus metrics exported per route.",
+      date: "Jan 2025 — Present",
       isDark: false,
       diagramType: "gatekeeper",
       metrics: [
-        { val: "< 2ms", label: "Auth Latency" },
-        { val: "100%", label: "Policy Sync" },
-        { val: "2.4k", label: "Blocked Threats" }
+        { val: "3.3k", label: "Req/sec @ 100 VUs" },
+        { val: "47ms", label: "p95 w/ Full Auth" },
+        { val: "9", label: "Security Layers" }
       ],
-      tech: "Python 3.11, FastAPI, Redis, PostgreSQL, React 18, TypeScript",
+      tech: "Python 3.11, FastAPI, OPA, Redis, PostgreSQL, OpenTelemetry, Prometheus, React 18",
       links: [
         { label: "GitHub Repository", url: "https://github.com/noob-master-cell/Gatekeeper" },
         { label: "Live Dashboard", url: "https://dashboard-production-5a2f.up.railway.app/" }
