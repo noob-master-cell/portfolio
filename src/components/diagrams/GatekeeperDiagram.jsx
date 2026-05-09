@@ -21,6 +21,7 @@ export default function GatekeeperDiagram() {
     { name: "9 · Prometheus Metrics",    g: "obs"     },
   ];
 
+  // Stroke colors (border + arrows)
   const gc = {
     auth:    "#4f46e5",
     rate:    "#7c3aed",
@@ -29,23 +30,42 @@ export default function GatekeeperDiagram() {
     obs:     "#047857",
   };
 
-  const gcRgba = {
-    auth:    "rgba(79,70,229,0.10)",
-    rate:    "rgba(124,58,237,0.10)",
-    policy:  "rgba(8,145,178,0.10)",
-    session: "rgba(185,28,28,0.10)",
-    obs:     "rgba(4,120,87,0.10)",
+  // Fill: very light tint for layer boxes
+  const gcFill = {
+    auth:    "rgba(79,70,229,0.05)",
+    rate:    "rgba(124,58,237,0.05)",
+    policy:  "rgba(8,145,178,0.05)",
+    session: "rgba(185,28,28,0.05)",
+    obs:     "rgba(4,120,87,0.05)",
   };
 
-  // Left service
+  // Darker shade for service label text (readable on white)
+  const gcLabel = {
+    auth:    "#3730a3",
+    rate:    "#5b21b6",
+    policy:  "#0e7490",
+    session: "#991b1b",
+    obs:     "#065f46",
+  };
+
   const LCX = 128;
   const LW  = 116;
-
-  // Right services
   const RCX = 768;
   const RW  = 130;
 
   const backendY = ly(8) + LH + 28;
+
+  const jwksTop  = lcy(0) - 10;
+  const jwksH    = lcy(1) - lcy(0) + 20;
+  const jwksMidY = (lcy(0) + lcy(1)) / 2;
+
+  const redisTop  = lcy(5) - 10;
+  const redisH    = lcy(6) - lcy(5) + 20;
+  const redisMidY = (lcy(5) + lcy(6)) / 2;
+
+  const otelTop  = lcy(7) - 10;
+  const otelH    = lcy(8) - lcy(7) + 20;
+  const otelMidY = (lcy(7) + lcy(8)) / 2;
 
   const legend = [
     { c: "#4f46e5", t: "Auth / Identity" },
@@ -55,19 +75,6 @@ export default function GatekeeperDiagram() {
     { c: "#047857", t: "Observability"   },
   ];
 
-  // Precomputed service geometry
-  const jwksTop    = lcy(0) - 10;
-  const jwksH      = lcy(1) - lcy(0) + 20;
-  const jwksMidY   = lcy(0) + jwksH / 2 - 10;
-
-  const redisTop   = lcy(5) - 10;
-  const redisH     = lcy(6) - lcy(5) + 20;
-  const redisMidY  = (lcy(5) + lcy(6)) / 2;
-
-  const otelTop    = lcy(7) - 10;
-  const otelH      = lcy(8) - lcy(7) + 20;
-  const otelMidY   = (lcy(7) + lcy(8)) / 2;
-
   return (
     <svg
       viewBox="0 0 900 560"
@@ -75,12 +82,15 @@ export default function GatekeeperDiagram() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       <defs>
-        <pattern id="gk-dots" width="30" height="30" patternUnits="userSpaceOnUse">
-          <circle cx="2" cy="2" r="1.2" fill="rgba(255,255,255,0.03)" />
+        {/* Subtle light dot grid */}
+        <pattern id="gk-ldots" width="28" height="28" patternUnits="userSpaceOnUse">
+          <circle cx="14" cy="14" r="0.9" fill="#cbd5e1" />
         </pattern>
+
+        {/* Arrowhead markers */}
         {[
           { id: "gk-main",    fill: "#6366f1" },
-          { id: "gk-gray",    fill: "#555"    },
+          { id: "gk-slate",   fill: "#94a3b8" },
           { id: "gk-auth",    fill: "#4f46e5" },
           { id: "gk-policy",  fill: "#0891b2" },
           { id: "gk-session", fill: "#b91c1c" },
@@ -93,11 +103,11 @@ export default function GatekeeperDiagram() {
       </defs>
 
       {/* Background */}
-      <rect width="100%" height="100%" fill="url(#gk-dots)" rx="12" />
+      <rect width="100%" height="100%" fill="url(#gk-ldots)" rx="12" />
 
-      {/* Client */}
-      <rect x={CX - 70} y="14" width="140" height="36" rx="4" fill="#111" stroke="#444" strokeWidth="1.5" />
-      <text x={CX} y="37" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700">
+      {/* Client — dark pill for contrast on white */}
+      <rect x={CX - 70} y="14" width="140" height="36" rx="4" fill="#0f172a" />
+      <text x={CX} y="37" textAnchor="middle" fill="#f8fafc" fontSize="11" fontWeight="700">
         👤 Client Request
       </text>
       <line x1={CX} y1="50" x2={CX} y2={Y0 - 2} stroke="#6366f1" strokeWidth="1.5" markerEnd="url(#gk-main)" />
@@ -107,17 +117,17 @@ export default function GatekeeperDiagram() {
         <g key={i}>
           <rect
             x={PX} y={ly(i)} width={PW} height={LH} rx="4"
-            fill={gcRgba[layer.g]} stroke={gc[layer.g]} strokeWidth="1.5"
+            fill={gcFill[layer.g]} stroke={gc[layer.g]} strokeWidth="1.5"
           />
-          <text x={CX} y={lcy(i) + 4.5} textAnchor="middle" fill="#f1f5f9" fontSize="10.5" fontWeight="700">
+          <text x={CX} y={lcy(i) + 4.5} textAnchor="middle" fill="#0f172a" fontSize="10.5" fontWeight="700">
             {layer.name}
           </text>
           {i < 8 && (
             <line
               x1={CX} y1={ly(i) + LH}
               x2={CX} y2={ly(i + 1) - 2}
-              stroke="#555" strokeWidth="1.5"
-              markerEnd="url(#gk-gray)"
+              stroke="#94a3b8" strokeWidth="1.5"
+              markerEnd="url(#gk-slate)"
             />
           )}
         </g>
@@ -129,25 +139,25 @@ export default function GatekeeperDiagram() {
         x2={CX} y2={backendY - 2}
         stroke="#6366f1" strokeWidth="1.5" markerEnd="url(#gk-main)"
       />
-      <rect x={CX - 90} y={backendY} width="180" height="36" rx="4" fill="#111" stroke="#444" strokeWidth="1.5" />
-      <text x={CX} y={backendY + 22} textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700">
+      <rect x={CX - 90} y={backendY} width="180" height="36" rx="4" fill="#0f172a" />
+      <text x={CX} y={backendY + 22} textAnchor="middle" fill="#f8fafc" fontSize="11" fontWeight="700">
         ⚙️ Backend API
       </text>
 
       {/* ── Left: JWKS Endpoint → layers 0 & 1 ── */}
       <rect
         x={LCX - LW / 2} y={jwksTop} width={LW} height={jwksH} rx="4"
-        fill="rgba(79,70,229,0.10)" stroke="#4f46e5" strokeWidth="1.5"
+        fill="rgba(79,70,229,0.05)" stroke="#4f46e5" strokeWidth="1.5"
       />
-      <text x={LCX} y={jwksMidY}      textAnchor="middle" fill="#a5b4fc" fontSize="9" fontWeight="700">JWKS</text>
-      <text x={LCX} y={jwksMidY + 13} textAnchor="middle" fill="#a5b4fc" fontSize="9" fontWeight="700">Endpoint</text>
-      {/* solid: supplies public key for JWT validation */}
+      <text x={LCX} y={jwksMidY - 4}  textAnchor="middle" fill="#3730a3" fontSize="9" fontWeight="700">JWKS</text>
+      <text x={LCX} y={jwksMidY + 10} textAnchor="middle" fill="#3730a3" fontSize="9" fontWeight="700">Endpoint</text>
+      {/* solid: public key for JWT validation */}
       <line
         x1={LCX + LW / 2} y1={lcy(0)}
         x2={PX - 2}        y2={lcy(0)}
         stroke="#4f46e5" strokeWidth="1.5" markerEnd="url(#gk-auth)"
       />
-      {/* dashed: rotated key used by JWKS layer */}
+      {/* dashed: rotated key feed */}
       <line
         x1={LCX + LW / 2} y1={lcy(1)}
         x2={PX - 2}        y2={lcy(1)}
@@ -157,13 +167,13 @@ export default function GatekeeperDiagram() {
       {/* ── Right: OPA Policy Engine → layer 4 ── */}
       <rect
         x={RCX - RW / 2} y={lcy(4) - 18} width={RW} height={36} rx="4"
-        fill="rgba(8,145,178,0.10)" stroke="#0891b2" strokeWidth="1.5"
+        fill="rgba(8,145,178,0.05)" stroke="#0891b2" strokeWidth="1.5"
       />
-      <text x={RCX} y={lcy(4) + 5} textAnchor="middle" fill="#67e8f9" fontSize="9" fontWeight="700">
+      <text x={RCX} y={lcy(4) + 5} textAnchor="middle" fill="#0e7490" fontSize="9" fontWeight="700">
         OPA Policy Engine
       </text>
       <line
-        x1={PX + PW + 2}   y1={lcy(4)}
+        x1={PX + PW + 2}      y1={lcy(4)}
         x2={RCX - RW / 2 - 2} y2={lcy(4)}
         stroke="#0891b2" strokeWidth="1.5" markerEnd="url(#gk-policy)"
       />
@@ -171,18 +181,18 @@ export default function GatekeeperDiagram() {
       {/* ── Right: Redis → layers 5 & 6 ── */}
       <rect
         x={RCX - RW / 2} y={redisTop} width={RW} height={redisH} rx="4"
-        fill="rgba(185,28,28,0.10)" stroke="#b91c1c" strokeWidth="1.5"
+        fill="rgba(185,28,28,0.05)" stroke="#b91c1c" strokeWidth="1.5"
       />
-      <text x={RCX} y={redisMidY + 5} textAnchor="middle" fill="#fca5a5" fontSize="9" fontWeight="700">
+      <text x={RCX} y={redisMidY + 5} textAnchor="middle" fill="#991b1b" fontSize="9" fontWeight="700">
         🔴 Redis
       </text>
       <line
-        x1={PX + PW + 2}   y1={lcy(5)}
+        x1={PX + PW + 2}      y1={lcy(5)}
         x2={RCX - RW / 2 - 2} y2={lcy(5)}
         stroke="#b91c1c" strokeWidth="1.5" markerEnd="url(#gk-session)"
       />
       <line
-        x1={PX + PW + 2}   y1={lcy(6)}
+        x1={PX + PW + 2}      y1={lcy(6)}
         x2={RCX - RW / 2 - 2} y2={lcy(6)}
         stroke="#b91c1c" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#gk-session)"
       />
@@ -190,18 +200,18 @@ export default function GatekeeperDiagram() {
       {/* ── Right: OTel / Prometheus → layers 7 & 8 ── */}
       <rect
         x={RCX - RW / 2} y={otelTop} width={RW} height={otelH} rx="4"
-        fill="rgba(4,120,87,0.10)" stroke="#047857" strokeWidth="1.5"
+        fill="rgba(4,120,87,0.05)" stroke="#047857" strokeWidth="1.5"
       />
-      <text x={RCX} y={otelMidY + 5} textAnchor="middle" fill="#6ee7b7" fontSize="9" fontWeight="700">
+      <text x={RCX} y={otelMidY + 5} textAnchor="middle" fill="#065f46" fontSize="9" fontWeight="700">
         OTel · Prometheus
       </text>
       <line
-        x1={PX + PW + 2}   y1={lcy(7)}
+        x1={PX + PW + 2}      y1={lcy(7)}
         x2={RCX - RW / 2 - 2} y2={lcy(7)}
         stroke="#047857" strokeWidth="1.5" markerEnd="url(#gk-obs)"
       />
       <line
-        x1={PX + PW + 2}   y1={lcy(8)}
+        x1={PX + PW + 2}      y1={lcy(8)}
         x2={RCX - RW / 2 - 2} y2={lcy(8)}
         stroke="#047857" strokeWidth="1.5" markerEnd="url(#gk-obs)"
       />
@@ -210,13 +220,13 @@ export default function GatekeeperDiagram() {
       {legend.map((item, i) => (
         <g key={i} transform={`translate(${52 + i * 160}, 528)`}>
           <rect width="10" height="10" y="1" rx="2" fill={item.c} />
-          <text x="15" y="10" fill="#555" fontSize="9" fontWeight="600">{item.t}</text>
+          <text x="15" y="10" fill="#475569" fontSize="9" fontWeight="600">{item.t}</text>
         </g>
       ))}
 
       <text
         x={CX} y="550"
-        fill="#2a2a2a" fontSize="8.5" fontWeight="900" letterSpacing="1.5" textAnchor="middle"
+        fill="#94a3b8" fontSize="8.5" fontWeight="900" letterSpacing="1.5" textAnchor="middle"
       >
         GATEKEEPER // MIDDLEWARE_PIPELINE_SEQUENCE // VER 4.0.0
       </text>

@@ -201,8 +201,8 @@ export default function NexusDiagram() {
       <line x1="200" y1="85" x2="258" y2="85" stroke="#6366f1" strokeWidth="1.2" markerEnd="url(#nexusArrow)" strokeOpacity="0.5" />
       <text x="214" y="78" fill="rgba(255,255,255,0.25)" fontSize="7px" fontWeight="700">REST</text>
 
-      {/* Pipeline → LLM Generation */}
-      <line x1="462" y1="300" x2="518" y2="300" stroke="#6366f1" strokeWidth="1.2" markerEnd="url(#nexusArrow)" strokeOpacity="0.5" />
+      {/* Pipeline → LLM Generation (from stage 7 bottom, routing right then up) */}
+      <path d="M 462 513 L 510 513 L 510 320 L 518 320" fill="none" stroke="#6366f1" strokeWidth="1.2" markerEnd="url(#nexusArrow)" strokeOpacity="0.6" />
 
       {/* LLM Gen → Eval */}
       <line x1="620" y1="340" x2="620" y2="363" stroke="#f43f5e" strokeWidth="1" markerEnd="url(#nexusArrowMuted)" strokeOpacity="0.6" />
@@ -210,10 +210,11 @@ export default function NexusDiagram() {
       {/* Ingestion → Pipeline (feeds vectors) */}
       <line x1="518" y1="200" x2="462" y2="290" stroke="rgba(245,158,11,0.3)" strokeWidth="1" strokeDasharray="4 4" markerEnd="url(#nexusArrowMuted)" />
 
-      {/* Pipeline → Web Search */}
-      <line x1="462" y1="420" x2="518" y2="420" stroke="rgba(14,165,233,0.3)" strokeWidth="1" strokeDasharray="4 4" />
-      <line x1="518" y1="420" x2="518" y2="300" stroke="rgba(14,165,233,0.3)" strokeWidth="1" strokeDasharray="4 4" />
-      <line x1="518" y1="300" x2="738" y2="300" stroke="rgba(14,165,233,0.3)" strokeWidth="1" strokeDasharray="4 4" markerEnd="url(#nexusArrowMuted)" />
+      {/* Agentic Router (stage 1, cy≈99) → Web Search Fallback */}
+      <line x1="462" y1="99" x2="508" y2="99"  stroke="rgba(14,165,233,0.4)" strokeWidth="1" strokeDasharray="4 4" />
+      <line x1="508" y1="99" x2="508" y2="300" stroke="rgba(14,165,233,0.4)" strokeWidth="1" strokeDasharray="4 4" />
+      <line x1="508" y1="300" x2="738" y2="300" stroke="rgba(14,165,233,0.4)" strokeWidth="1" strokeDasharray="4 4" markerEnd="url(#nexusArrowMuted)" />
+      <text x="514" y="95" fill="rgba(14,165,233,0.6)" fontSize="7px" fontWeight="700">web_route</text>
 
       {/* Ollama ↔ Pipeline */}
       <line x1="200" y1="268" x2="258" y2="268" stroke="#6366f1" strokeWidth="1" strokeDasharray="3 3" markerEnd="url(#nexusArrow)" strokeOpacity="0.4" />
