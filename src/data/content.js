@@ -3,8 +3,8 @@ export const DATA = {
     name: "Dheeraj Karwasra",
     model: "Software Engineer",
     title: "M.Sc. CS @ RPTU · Software Engineer",
-    tagline: "I engineer backend systems and AI pipelines that move metrics — 80% less manual processing at Fraunhofer, 19% better cash-flow forecasting at HighRadius.",
-    availability: "Currently open to Software Engineer, Backend Engineer, and AI Engineer roles in Germany & the EU. Let's connect — I'd love to discuss how I can contribute to your engineering team.",
+    tagline: "I build backend systems and AI pipelines with a bias for measurable impact. At Fraunhofer I cut manual processing by 80%. At HighRadius I moved cash-flow forecasting accuracy by 19%.",
+    availability: "I'm looking for Software Engineer, Backend, or AI Engineer roles in Germany and the EU. If something here resonates, reach out — I'd like to talk.",
     location: "Kaiserslautern, Germany",
     email: "karwasra.dheeraj28@gmail.com",
     phone: "+49 1624138740",
@@ -16,8 +16,8 @@ export const DATA = {
     resume: "/Dheeraj_Karwasra_Resume.pdf"
   },
   about: {
-    quote: "M.Sc. Computer Science at RPTU Kaiserslautern. I specialize in distributed backend systems, AI pipeline orchestration, and cloud-native architecture — building things that are fault-tolerant by design and measurably impactful.",
-    description: "From designing multi-agent AI systems at Fraunhofer to building ML models at HighRadius that improved enterprise cash-flow forecasting by 19% — I focus on engineering that moves business metrics, not just code that compiles.",
+    quote: "I'm doing my M.Sc. in Computer Science at RPTU Kaiserslautern. Distributed systems, AI pipeline orchestration, cloud-native architecture — that's where I spend most of my time. I care about building things that are fault-tolerant by design and that you can actually measure working.",
+    description: "At Fraunhofer, I designed multi-agent AI systems that automated away hours of manual document work every week. At HighRadius, I built ML models that genuinely changed how finance teams forecast cash flow. That's the pattern I keep chasing — engineering that shifts a number, not just engineering that ships.",
     skills: [
       { category: "Languages", items: "Python, TypeScript, JavaScript, C++, SQL, Java" },
       { category: "Backend & Cloud", items: "FastAPI, Node.js, NestJS, GraphQL, AWS, Docker, CI/CD, Git" },
@@ -34,10 +34,10 @@ export const DATA = {
       role: "Software Developer — AI & Automation",
       date: "Sep 2025 — Feb 2026",
       logs: [
-        "Architected a multi-agent AI pipeline using CrewAI and Python, automating document classification and routing across 3 departments — eliminating 80% of manual processing effort",
-        "Designed a fault-tolerant orchestration layer with built-in anomaly detection, reducing system downtime by 9x under concurrent workloads",
-        "Delivered a full-stack internal tool (React + FastAPI + PostgreSQL) replacing a 6-step manual approval workflow with a single-click automated process",
-        "Integrated real-time monitoring and logging infrastructure to surface pipeline health metrics, enabling proactive incident response"
+        "I built a multi-agent AI pipeline with CrewAI that handles document classification and routing across three departments — eliminating 80% of the manual review work that previously required human eyes on every file",
+        "The orchestration layer is fault-tolerant by default. It detects anomalies mid-run and recovers without intervention, which cut system downtime by 9x under concurrent load",
+        "I also built the internal tool that replaced a 6-step approval workflow with a single click — React frontend, FastAPI backend, PostgreSQL underneath. The team went from filling forms to just not having to",
+        "I wired up real-time monitoring and structured logging so the team could see pipeline health as it happened, not discover problems after something already broke"
       ],
       tech: ["Python", "CrewAI", "FastAPI", "React", "PostgreSQL", "Docker"]
     },
@@ -47,9 +47,9 @@ export const DATA = {
       role: "Software Developer Intern — Machine Learning",
       date: "Jan 2022 — Apr 2022",
       logs: [
-        "Engineered an ensemble ML model (Random Forest + XGBoost) to predict B2B invoice payment dates, achieving 89% accuracy on production data",
-        "Directly improved enterprise cash-flow forecasting by 19%, enabling finance teams to optimize working capital for Fortune 500 clients",
-        "Built data preprocessing and feature engineering pipelines in Python, processing 500K+ invoice records with automated outlier detection"
+        "I built an ensemble model — Random Forest combined with XGBoost — to predict when B2B invoices would actually get paid. It hit 89% accuracy on production data",
+        "That accuracy translated directly into a 19% improvement in cash-flow forecasting for Fortune 500 finance teams. They could plan working capital with confidence instead of guesswork",
+        "Getting there meant preprocessing 500K+ invoice records and building feature engineering pipelines that could handle messy, real-world data — including automated outlier detection"
       ],
       tech: ["Python", "scikit-learn", "XGBoost", "pandas", "SQL"]
     }
@@ -63,7 +63,7 @@ export const DATA = {
     {
       title: "Nexus",
       subtitle: "Agentic Document Intelligence — Local RAG",
-      description: "A privacy-first RAG system where embedding, retrieval, generation, and evaluation all run locally. Features a 7-stage retrieval pipeline with HyDE expansion, hybrid search (dense vectors + BM25), RRF fusion, MMR re-ranking, agentic query routing, and post-generation faithfulness evaluation — all powered by Ollama with zero cloud dependency.",
+      description: "I built Nexus because I wanted a RAG system where nothing leaves my machine. Every step — embedding, retrieval, generation, evaluation — runs locally via Ollama. The retrieval pipeline has 7 stages: HyDE query expansion, hybrid search combining dense vectors with BM25, RRF score fusion, MMR re-ranking to cut redundant results, agentic routing for complex queries, and a post-generation faithfulness check. No cloud API calls. No data exposure. A system that actually reasons over your documents.",
       date: "Apr 2026 — Present",
       isDark: true,
       diagramType: "nexus",
@@ -80,7 +80,7 @@ export const DATA = {
     {
       title: "Gatekeeper Zero-Trust",
       subtitle: "BeyondCorp-Grade Reverse Proxy Gateway",
-      description: "A zero-trust reverse proxy inspired by Google BeyondCorp, enforcing identity verification on every request. Nine-layer middleware pipeline: RS256 JWT + JWKS rotation, per-IP/per-key rate limiting, OPA policy engine with Rego, Redis session store with instant revocation, and full OpenTelemetry tracing with Prometheus metrics exported per route.",
+      description: "Most API gateways treat authentication as a one-time check at the door. I built Gatekeeper around the opposite idea — every request earns access, nothing is trusted by default. It's a 9-layer middleware pipeline: RS256 JWT validation with automatic JWKS rotation, per-IP and per-key rate limiting, an OPA policy engine running Rego rules, Redis-backed session revocation that takes effect instantly, and OpenTelemetry tracing with Prometheus metrics per route. It handles 3.3k requests per second at 47ms p95 — with full auth on every hop.",
       date: "Jan 2025 — Present",
       isDark: false,
       diagramType: "gatekeeper",
@@ -98,7 +98,7 @@ export const DATA = {
     {
       title: "ESN Event Platform",
       subtitle: "Centralized Management for Student Associations",
-      description: "A unified architecture for the Erasmus Student Network (ESN) managing full event lifecycles. Engineered a decoupled monorepo with a NestJS GraphQL backend and React frontend, featuring a custom query complexity guard, Prisma-driven relational data, and Redis-backed tiered rate limiting.",
+      description: "ESN Kaiserslautern was managing events through scattered tools and a lot of manual coordination. I built them a unified platform: a decoupled monorepo with a NestJS GraphQL backend and a React 19 frontend. I wrote a custom query complexity guard so no client can slam the database with expensive nested queries. Redis-backed rate limiting is tiered by user role. The result was a 9x reduction in database load and O(1) query performance on the most common operations.",
       date: "Aug 2024 — Nov 2024",
       isDark: true,
       diagramType: "performance",
@@ -117,25 +117,25 @@ export const DATA = {
   otherProjects: [
     {
       title: "LocalMart",
-      description: "A community marketplace web app enabling local buying, selling, and a lost & found section. Built with Firebase for auth, Firestore, and storage.",
+      description: "A community marketplace for buying, selling, and posting lost & found items locally. I built it with React and Firebase — auth, Firestore, and storage all handled without spinning up a separate backend.",
       tech: "React, Vite, Tailwind, Firebase",
       link: "https://github.com/noob-master-cell/LocalMart"
     },
     {
       title: "ByteSphere",
-      description: "A full-stack blog platform with content management, user authentication, and responsive design.",
+      description: "A full-stack blog platform I built to get hands-on with Node.js and MongoDB. Users can write, manage, and publish posts — I wanted to understand how all the pieces fit together end to end.",
       tech: "JavaScript, Node.js, MongoDB",
       link: "https://github.com/noob-master-cell/ByteSphere"
     },
     {
       title: "Student Predictor",
-      description: "ML-powered exam score prediction system using ensemble models with a web-based inference interface.",
+      description: "An ML model that predicts student exam scores using ensemble methods. I added a Flask web interface so predictions are one form submission away — no notebook required.",
       tech: "Python, scikit-learn, Flask",
       link: "https://github.com/noob-master-cell/StudentPerformancePredictor"
     },
     {
       title: "Path Finder",
-      description: "Interactive pathfinding algorithm visualizer with Dijkstra, A*, BFS, and DFS implementations on a grid.",
+      description: "A grid-based visualizer for pathfinding algorithms — Dijkstra, A*, BFS, and DFS. I built it while studying algorithms because watching them run made the differences click in a way reading never did.",
       tech: "JavaScript, React, Algorithms",
       link: "https://github.com/noob-master-cell/Path-Finder"
     }
