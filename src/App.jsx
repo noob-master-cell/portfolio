@@ -3,7 +3,7 @@ import './index.css';
 
 import NoiseOverlay from './components/ui/NoiseOverlay';
 import InteractiveBackground from './components/ui/InteractiveBackground';
-import CustomCursor from './components/ui/CustomCursor';
+import ProfessionalSideNav from './components/ui/ProfessionalSideNav';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
@@ -26,7 +26,7 @@ export default function App() {
     <div className="min-h-screen bg-[#030712] text-slate-200 selection:bg-indigo-500 selection:text-white font-sans antialiased">
       <NoiseOverlay />
       <InteractiveBackground />
-      <CustomCursor />
+      <ProfessionalSideNav />
       <Navbar />
 
       <main role="main">

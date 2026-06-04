@@ -1,5 +1,6 @@
 import { DATA } from '../data/content';
 import { Icons } from '../components/ui/Icons';
+import SectionLabel from '../components/ui/SectionLabel';
 
 export default function Contact() {
   const contactMethods = [
@@ -49,17 +50,14 @@ export default function Contact() {
 
       <div className="max-w-[1440px] w-full mx-auto px-6 lg:px-12 flex-grow flex flex-col justify-center relative z-10">
         <div className="max-w-4xl">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-[1px] bg-[#6366f1]" />
-            <span className="font-mono text-xs text-[#6366f1] uppercase tracking-[0.2em] font-bold">initialize_connection // sys.contact</span>
-          </div>
+          <SectionLabel text="Get in Touch / Contact" isDark={true} />
 
-          <h2 className="text-[52px] md:text-[86px] font-bold capitalize tracking-tighter mb-10 text-white leading-[0.9]">
+          <h2 className="text-[52px] md:text-[80px] font-bold capitalize tracking-tighter mb-8 text-white leading-[0.95]">
             let&apos;s build <br />
-            <span className="text-[#333]">something stable.</span>
+            <span className="text-slate-655">something remarkable.</span>
           </h2>
           
-          <p className="font-mono text-base text-[#888] mb-8 md:mb-16 leading-relaxed max-w-2xl">
+          <p className="font-sans text-base text-slate-400 mb-8 md:mb-12 leading-relaxed max-w-2xl">
             {DATA.identity.availability}
           </p>
 
@@ -70,34 +68,23 @@ export default function Contact() {
                 href={method.url}
                 target={method.label !== 'mobile' && method.label !== 'email' ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="group relative flex flex-col p-5 md:p-6 bg-[#111]/40 border border-white/5 hover:border-[#6366f1]/40 transition-all duration-500 overflow-hidden"
+                className="group relative flex flex-col p-6 bg-slate-900/10 border border-slate-800/80 hover:border-indigo-500/30 hover:bg-slate-900/20 rounded-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden"
               >
-                {/* Visual Accent */}
-                <div className="absolute top-0 right-0 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute top-3 right-3 w-1.5 h-1.5 bg-[#6366f1]" />
-                </div>
-
-                <div className="flex items-center justify-between mb-4 md:mb-8">
-                  <div className="w-10 h-10 border border-white/5 flex items-center justify-center group-hover:border-[#6366f1]/20 transition-colors">
-                    <method.icon width={18} height={18} className="text-white/40 group-hover:text-[#6366f1] transition-colors" />
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-10 h-10 rounded-md border border-slate-800 flex items-center justify-center group-hover:border-indigo-500/25 transition-colors bg-black/20">
+                    <method.icon width={18} height={18} className="text-slate-500 group-hover:text-indigo-450 transition-colors" />
                   </div>
-                  <Icons.ExternalLink width={12} height={12} className="text-white/10 group-hover:text-[#6366f1] transition-all -translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" />
+                  <Icons.ExternalLink width={12} height={12} className="text-slate-700 group-hover:text-indigo-450 transition-all -translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0" />
                 </div>
 
                 <div className="mt-auto">
-                  <div className="font-mono text-xs text-[#444] uppercase tracking-widest mb-1 group-hover:text-[#666] transition-colors">
-                    {method.sub}
-                  </div>
-                  <div className="font-mono text-xs text-[#6366f1] font-bold uppercase tracking-widest mb-2 transition-colors">
+                  <div className="font-mono text-[9px] text-slate-500 uppercase tracking-widest mb-1">
                     {method.label}
                   </div>
-                  <div className="text-base font-bold text-white/70 group-hover:text-white transition-colors truncate">
+                  <div className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors truncate">
                     {method.value}
                   </div>
                 </div>
-
-                {/* Status Bar */}
-                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#6366f1] group-hover:w-full transition-all duration-700" />
               </a>
             ))}
           </div>
@@ -105,10 +92,10 @@ export default function Contact() {
       </div>
       
       {/* Footer Branding */}
-      <div className="absolute bottom-12 left-6 lg:left-12 flex items-center gap-6 opacity-20 hidden md:flex font-mono text-xs uppercase tracking-widest">
-        <span>© 2026 // DHEERAJ_KARWASRA</span>
-        <div className="w-8 h-[1px] bg-white/50" />
-        <span>SYS_STATUS: ONLINE</span>
+      <div className="absolute bottom-10 left-6 lg:left-12 flex items-center gap-6 opacity-30 hidden md:flex font-mono text-[10px] uppercase tracking-widest text-slate-500">
+        <span>© 2026 // Dheeraj Karwasra</span>
+        <div className="w-8 h-[1px] bg-slate-800" />
+        <span>System Active</span>
       </div>
     </section>
   );

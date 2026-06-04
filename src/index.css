@@ -9,17 +9,6 @@ html, body {
   color: #f3f4f6;
 }
 
-html, body, a, button, [role="button"] {
-  cursor: none !important;
-}
-
-@media (max-width: 768px) {
-  html, body { cursor: auto; }
-}
-
-/* Explicitly allow text cursor over terminal area */
-.cursor-text { cursor: text !important; }
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -43,3 +32,13 @@ html, body, a, button, [role="button"] {
 .animation-pulse {
   animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Ensure native OS cursor is always visible and functional across all elements */
+html, body, #root {
+  cursor: default !important;
+}
+
+a, button, select, input, textarea, [role="button"], .cursor-pointer {
+  cursor: pointer !important;
+}
+

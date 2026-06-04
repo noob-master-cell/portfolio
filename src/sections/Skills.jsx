@@ -55,11 +55,11 @@ export default function Skills() {
         </svg>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
-        <div className="font-mono text-xs uppercase tracking-[0.4em] mb-12 text-black/30 select-none">capabilities / technical_stack</div>
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative">
+        <SectionLabel text="Capabilities / Technical Stack" isDark={false} />
 
         {/* 3-column grid on desktop, 2 on tablet, 1 on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
           {skillCategories.map((skill, i) => {
             const isActive = activeIdx === i;
             const items = skill.items.split(', ');
@@ -70,45 +70,38 @@ export default function Skills() {
                 key={i}
                 onMouseEnter={() => setActiveIdx(i)}
                 onMouseLeave={() => setActiveIdx(null)}
-                className={`group relative border p-5 transition-all duration-300 cursor-default
+                className={`group relative border p-6 transition-all duration-300 rounded-[4px] cursor-default
                   ${isActive 
-                    ? 'bg-white border-[#6366f1]/30 shadow-lg shadow-[#6366f1]/5' 
-                    : 'bg-white/40 border-[#e2e8f0] hover:bg-white hover:border-[#6366f1]/20 hover:shadow-md'
+                    ? 'bg-white border-indigo-500/20 shadow-xl shadow-indigo-500/5' 
+                    : 'bg-white/40 border-[#e2e8f0] hover:bg-white hover:border-indigo-500/10 hover:shadow-md'
                   }`}
               >
-                {/* Module ID */}
-                <div className={`absolute top-0 right-0 px-3 py-1.5 border-l border-b font-mono text-[10px] tracking-wider transition-colors
-                  ${isActive ? 'bg-[#6366f1] text-white border-[#6366f1]' : 'border-[#e2e8f0] text-black/25'}`}
-                >
-                  MOD_0{i + 1}
-                </div>
-
                 {/* Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors
-                    ${isActive ? 'bg-[#6366f1]/10 text-[#6366f1]' : 'bg-black/[0.03] text-black/30 group-hover:text-[#6366f1]/60'}`}
+                <div className="flex items-center gap-4 mb-5">
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors
+                    ${isActive ? 'bg-indigo-50 text-indigo-650' : 'bg-slate-100 text-slate-450 group-hover:text-indigo-500'}`}
                   >
                     {icon}
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-black tracking-tight">{skill.category}</h3>
-                    <span className={`font-mono text-[10px] uppercase tracking-widest transition-colors
-                      ${isActive ? 'text-[#6366f1]' : 'text-black/30'}`}
+                    <span className={`font-mono text-[10px] uppercase tracking-wider transition-colors
+                      ${isActive ? 'text-indigo-600 font-bold' : 'text-slate-400'}`}
                     >
-                      {items.length} modules loaded
+                      {items.length} Technologies
                     </span>
                   </div>
                 </div>
 
                 {/* Skills as tags */}
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {items.map((item, j) => (
                     <span
                       key={j}
-                      className={`px-2.5 py-1 text-xs font-medium rounded-md transition-all duration-200
+                      className={`px-2.5 py-1 text-xs font-medium rounded-md border transition-all duration-205
                         ${isActive
-                          ? 'bg-[#6366f1]/[0.06] text-[#4338ca] border border-[#6366f1]/15'
-                          : 'bg-black/[0.03] text-black/60 border border-transparent group-hover:bg-[#6366f1]/[0.04] group-hover:text-black/70'
+                          ? 'bg-indigo-50/40 text-indigo-700 border-indigo-100/60'
+                          : 'bg-white/80 text-slate-650 border-slate-100/80 group-hover:bg-indigo-50/20 group-hover:text-slate-800'
                         }`}
                       style={{ animationDelay: `${j * 30}ms` }}
                     >
@@ -116,49 +109,12 @@ export default function Skills() {
                     </span>
                   ))}
                 </div>
-
-                {/* Bottom status bar */}
-                <div className="mt-4 pt-3 border-t border-dashed border-[#e2e8f0] flex items-center justify-between">
-                  <div className="flex gap-[2px]">
-                    {items.map((_, dot) => (
-                      <div
-                        key={dot}
-                        className={`w-[3px] h-2.5 rounded-[1px] transition-colors duration-300
-                          ${isActive ? 'bg-[#6366f1]' : 'bg-[#ddd]'}`}
-                        style={{ transitionDelay: `${dot * 40}ms` }}
-                      />
-                    ))}
-                  </div>
-                  <span className={`font-mono text-[10px] uppercase tracking-widest font-bold transition-colors
-                    ${isActive ? 'text-[#6366f1]' : 'text-black/20'}`}>
-                    {isActive ? 'active' : 'standby'}
-                  </span>
-                </div>
-
-                {/* Corner accents */}
-                <div className={`absolute top-0 left-0 w-2 h-2 border-t border-l transition-colors ${isActive ? 'border-[#6366f1]' : 'border-[#ddd]'}`} />
-                <div className={`absolute bottom-0 right-0 w-2 h-2 border-b border-r transition-colors ${isActive ? 'border-[#6366f1]' : 'border-[#ddd]'}`} />
               </div>
             );
           })}
         </div>
 
-        {/* Coursework strip */}
-        {DATA.coursework && (
-          <div className="mt-8 border border-[#e2e8f0] bg-white/40 p-5">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-1 h-4 bg-[#6366f1] rounded-full" />
-              <span className="font-mono text-[10px] uppercase tracking-widest text-black/40 font-bold">Relevant Coursework</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {DATA.coursework.map((course, i) => (
-                <span key={i} className="px-3 py-1 text-xs font-medium text-black/50 bg-black/[0.02] border border-[#e2e8f0] rounded-md hover:text-[#6366f1] hover:border-[#6366f1]/20 hover:bg-[#6366f1]/[0.03] transition-colors cursor-default">
-                  {course}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
+
       </div>
     </section>
   );

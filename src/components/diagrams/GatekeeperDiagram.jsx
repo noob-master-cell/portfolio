@@ -1,4 +1,4 @@
-export default function GatekeeperDiagram() {
+export default function GatekeeperDiagram({ activeStep = 0 }) {
   const CX = 450;
   const PW = 256;
   const PX = CX - PW / 2;
@@ -10,42 +10,24 @@ export default function GatekeeperDiagram() {
   const lcy = (i) => ly(i) + LH / 2;
 
   const layers = [
-    { name: "1 · RS256 JWT Validation",  g: "auth"    },
-    { name: "2 · JWKS Key Rotation",     g: "auth"    },
-    { name: "3 · Per-IP Rate Limit",     g: "rate"    },
-    { name: "4 · Per-Key Rate Limit",    g: "rate"    },
-    { name: "5 · OPA Policy (Rego)",     g: "policy"  },
-    { name: "6 · Redis Session Check",   g: "session" },
-    { name: "7 · Instant Revocation",    g: "session" },
-    { name: "8 · OTel Tracing",          g: "obs"     },
-    { name: "9 · Prometheus Metrics",    g: "obs"     },
+    { name: "1 · RS256 JWT Validation",  g: "auth",    step: 2 },
+    { name: "2 · JWKS Key Rotation",     g: "auth",    step: 2 },
+    { name: "3 · Per-IP Rate Limit",     g: "rate",    step: 3 },
+    { name: "4 · Per-Key Rate Limit",    g: "rate",    step: 3 },
+    { name: "5 · OPA Policy (Rego)",     g: "policy",  step: 4 },
+    { name: "6 · Redis Session Check",   g: "session", step: 5 },
+    { name: "7 · Instant Revocation",    g: "session", step: 5 },
+    { name: "8 · OTel Tracing",          g: "obs",     step: 6 },
+    { name: "9 · Prometheus Metrics",    g: "obs",     step: 6 },
   ];
 
-  // Stroke colors (border + arrows)
+  // Stroke colors for different modules
   const gc = {
     auth:    "#4f46e5",
     rate:    "#7c3aed",
     policy:  "#0891b2",
     session: "#b91c1c",
     obs:     "#047857",
-  };
-
-  // Fill: very light tint for layer boxes
-  const gcFill = {
-    auth:    "rgba(79,70,229,0.05)",
-    rate:    "rgba(124,58,237,0.05)",
-    policy:  "rgba(8,145,178,0.05)",
-    session: "rgba(185,28,28,0.05)",
-    obs:     "rgba(4,120,87,0.05)",
-  };
-
-  // Darker shade for service label text (readable on white)
-  const gcLabel = {
-    auth:    "#3730a3",
-    rate:    "#5b21b6",
-    policy:  "#0e7490",
-    session: "#991b1b",
-    obs:     "#065f46",
   };
 
   const LCX = 128;
@@ -75,6 +57,29 @@ export default function GatekeeperDiagram() {
     { c: "#047857", t: "Observability"   },
   ];
 
+  const getStyle = (steps) => {
+    const list = Array.isArray(steps) ? steps : [steps];
+    if (activeStep === 0) return { transition: 'all 0.5s ease' };
+    const isActive = list.includes(activeStep);
+    return {
+      opacity: isActive ? 1 : 0.15,
+      filter: isActive ? 'drop-shadow(0px 2px 6px rgba(99, 102, 241, 0.25))' : 'none',
+      transition: 'all 0.4s ease',
+    };
+  };
+
+  const getLineStyle = (steps) => {
+    const list = Array.isArray(steps) ? steps : [steps];
+    if (activeStep === 0) return { transition: 'all 0.5s ease' };
+    const isActive = list.includes(activeStep);
+    return {
+      opacity: isActive ? 1 : 0.15,
+      stroke: isActive ? '#6366f1' : 'rgba(255, 255, 255, 0.15)',
+      strokeWidth: isActive ? 2 : 1.2,
+      transition: 'all 0.4s ease',
+    };
+  };
+
   return (
     <svg
       viewBox="0 0 900 560"
@@ -82,15 +87,13 @@ export default function GatekeeperDiagram() {
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       <defs>
-        {/* Subtle light dot grid */}
         <pattern id="gk-ldots" width="28" height="28" patternUnits="userSpaceOnUse">
-          <circle cx="14" cy="14" r="0.9" fill="#cbd5e1" />
+          <circle cx="14" cy="14" r="0.9" fill="rgba(255, 255, 255, 0.03)" />
         </pattern>
 
-        {/* Arrowhead markers */}
         {[
           { id: "gk-main",    fill: "#6366f1" },
-          { id: "gk-slate",   fill: "#94a3b8" },
+          { id: "gk-slate",   fill: "#475569" },
           { id: "gk-auth",    fill: "#4f46e5" },
           { id: "gk-policy",  fill: "#0891b2" },
           { id: "gk-session", fill: "#b91c1c" },
@@ -102,134 +105,157 @@ export default function GatekeeperDiagram() {
         ))}
       </defs>
 
-      {/* Background */}
+      {/* Background Grid */}
       <rect width="100%" height="100%" fill="url(#gk-ldots)" rx="12" />
 
-      {/* Client — dark pill for contrast on white */}
-      <rect x={CX - 70} y="14" width="140" height="36" rx="4" fill="#0f172a" />
-      <text x={CX} y="37" textAnchor="middle" fill="#f8fafc" fontSize="11" fontWeight="700">
-        👤 Client Request
-      </text>
-      <line x1={CX} y1="50" x2={CX} y2={Y0 - 2} stroke="#6366f1" strokeWidth="1.5" markerEnd="url(#gk-main)" />
+      {/* Client Block */}
+      <g style={getStyle(1)}>
+        <rect x={CX - 70} y="14" width="140" height="36" rx="8" fill="#070a13" stroke={activeStep === 1 ? '#6366f1' : '#1e293b'} strokeWidth={1.5} />
+        <text x={CX} y={36} textAnchor="middle" fill="#f8fafc" fontSize="11" fontWeight="700">
+          👤 Client Request
+        </text>
+      </g>
+      <line x1={CX} y1="50" x2={CX} y2={Y0 - 2} stroke="#6366f1" strokeWidth="1.2" markerEnd="url(#gk-main)" style={getLineStyle(1)} />
 
       {/* 9 Middleware Layers */}
-      {layers.map((layer, i) => (
-        <g key={i}>
-          <rect
-            x={PX} y={ly(i)} width={PW} height={LH} rx="4"
-            fill={gcFill[layer.g]} stroke={gc[layer.g]} strokeWidth="1.5"
-          />
-          <text x={CX} y={lcy(i) + 4.5} textAnchor="middle" fill="#0f172a" fontSize="10.5" fontWeight="700">
-            {layer.name}
-          </text>
-          {i < 8 && (
-            <line
-              x1={CX} y1={ly(i) + LH}
-              x2={CX} y2={ly(i + 1) - 2}
-              stroke="#94a3b8" strokeWidth="1.5"
-              markerEnd="url(#gk-slate)"
+      {layers.map((layer, i) => {
+        const isCurrent = activeStep === layer.step;
+        return (
+          <g key={i} style={getStyle(layer.step)}>
+            <rect
+              x={PX} y={ly(i)} width={PW} height={LH} rx="8"
+              fill="#070a13" stroke={isCurrent ? '#6366f1' : gc[layer.g]} strokeWidth={isCurrent ? 2 : 1}
             />
-          )}
-        </g>
-      ))}
+            <text x={CX} y={lcy(i) + 4} textAnchor="middle" fill="#ffffff" fontSize="11" fontWeight="600">
+              {layer.name}
+            </text>
+            {i < 8 && (
+              <line
+                x1={CX} y1={ly(i) + LH}
+                x2={CX} y2={ly(i + 1) - 2}
+                stroke="rgba(255, 255, 255, 0.15)" strokeWidth="1"
+                markerEnd="url(#gk-slate)"
+                style={getLineStyle(layers[i+1].step)}
+              />
+            )}
+          </g>
+        );
+      })}
 
-      {/* Backend API */}
+      {/* Backend API connection */}
       <line
         x1={CX} y1={ly(8) + LH}
         x2={CX} y2={backendY - 2}
-        stroke="#6366f1" strokeWidth="1.5" markerEnd="url(#gk-main)"
+        stroke="#6366f1" strokeWidth="1.2" markerEnd="url(#gk-main)"
+        style={getLineStyle(7)}
       />
-      <rect x={CX - 90} y={backendY} width="180" height="36" rx="4" fill="#0f172a" />
-      <text x={CX} y={backendY + 22} textAnchor="middle" fill="#f8fafc" fontSize="11" fontWeight="700">
-        ⚙️ Backend API
-      </text>
+      <g style={getStyle(7)}>
+        <rect x={CX - 90} y={backendY} width="180" height="36" rx="8" fill="#070a13" stroke={activeStep === 7 ? '#6366f1' : '#1e293b'} strokeWidth={1.5} />
+        <text x={CX} y={backendY + 22} textAnchor="middle" fill="#f8fafc" fontSize="11" fontWeight="700">
+          ⚙️ Backend API
+        </text>
+      </g>
 
-      {/* ── Left: JWKS Endpoint → layers 0 & 1 ── */}
-      <rect
-        x={LCX - LW / 2} y={jwksTop} width={LW} height={jwksH} rx="4"
-        fill="rgba(79,70,229,0.05)" stroke="#4f46e5" strokeWidth="1.5"
-      />
-      <text x={LCX} y={jwksMidY - 4}  textAnchor="middle" fill="#3730a3" fontSize="9" fontWeight="700">JWKS</text>
-      <text x={LCX} y={jwksMidY + 10} textAnchor="middle" fill="#3730a3" fontSize="9" fontWeight="700">Endpoint</text>
-      {/* solid: public key for JWT validation */}
+      {/* ── Left: JWKS Endpoint ── */}
+      <g style={getStyle(2)}>
+        <rect
+          x={LCX - LW / 2} y={jwksTop} width={LW} height={jwksH} rx="8"
+          fill="#070a13" stroke="#4f46e5" strokeWidth={activeStep === 2 ? 2 : 1}
+        />
+        <text x={LCX} y={jwksMidY - 3}  textAnchor="middle" fill="#818cf8" fontSize="10" fontWeight="700">JWKS</text>
+        <text x={LCX} y={jwksMidY + 11} textAnchor="middle" fill="#818cf8" fontSize="10" fontWeight="700">Endpoint</text>
+      </g>
       <line
         x1={LCX + LW / 2} y1={lcy(0)}
         x2={PX - 2}        y2={lcy(0)}
-        stroke="#4f46e5" strokeWidth="1.5" markerEnd="url(#gk-auth)"
+        stroke="#4f46e5" strokeWidth="1.2" markerEnd="url(#gk-auth)"
+        style={getLineStyle(2)}
       />
-      {/* dashed: rotated key feed */}
       <line
         x1={LCX + LW / 2} y1={lcy(1)}
         x2={PX - 2}        y2={lcy(1)}
-        stroke="#4f46e5" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#gk-auth)"
+        stroke="#4f46e5" strokeWidth="1.2" strokeDasharray="3 3" markerEnd="url(#gk-auth)"
+        style={getLineStyle(2)}
       />
 
-      {/* ── Right: OPA Policy Engine → layer 4 ── */}
-      <rect
-        x={RCX - RW / 2} y={lcy(4) - 18} width={RW} height={36} rx="4"
-        fill="rgba(8,145,178,0.05)" stroke="#0891b2" strokeWidth="1.5"
-      />
-      <text x={RCX} y={lcy(4) + 5} textAnchor="middle" fill="#0e7490" fontSize="9" fontWeight="700">
-        OPA Policy Engine
-      </text>
+      {/* ── Right: OPA Policy Engine ── */}
+      <g style={getStyle(4)}>
+        <rect
+          x={RCX - RW / 2} y={lcy(4) - 18} width={RW} height={36} rx="8"
+          fill="#070a13" stroke="#0891b2" strokeWidth={activeStep === 4 ? 2 : 1}
+        />
+        <text x={RCX} y={lcy(4) + 4} textAnchor="middle" fill="#22d3ee" fontSize="10" fontWeight="700">
+          OPA Policy Engine
+        </text>
+      </g>
       <line
         x1={PX + PW + 2}      y1={lcy(4)}
         x2={RCX - RW / 2 - 2} y2={lcy(4)}
-        stroke="#0891b2" strokeWidth="1.5" markerEnd="url(#gk-policy)"
+        stroke="#0891b2" strokeWidth="1.2" markerEnd="url(#gk-policy)"
+        style={getLineStyle(4)}
       />
 
-      {/* ── Right: Redis → layers 5 & 6 ── */}
-      <rect
-        x={RCX - RW / 2} y={redisTop} width={RW} height={redisH} rx="4"
-        fill="rgba(185,28,28,0.05)" stroke="#b91c1c" strokeWidth="1.5"
-      />
-      <text x={RCX} y={redisMidY + 5} textAnchor="middle" fill="#991b1b" fontSize="9" fontWeight="700">
-        🔴 Redis
-      </text>
+      {/* ── Right: Redis ── */}
+      <g style={getStyle(5)}>
+        <rect
+          x={RCX - RW / 2} y={redisTop} width={RW} height={redisH} rx="8"
+          fill="#070a13" stroke="#b91c1c" strokeWidth={activeStep === 5 ? 2 : 1}
+        />
+        <text x={RCX} y={redisMidY + 4} textAnchor="middle" fill="#f87171" fontSize="10" fontWeight="700">
+          💾 Redis Session
+        </text>
+      </g>
       <line
         x1={PX + PW + 2}      y1={lcy(5)}
         x2={RCX - RW / 2 - 2} y2={lcy(5)}
-        stroke="#b91c1c" strokeWidth="1.5" markerEnd="url(#gk-session)"
+        stroke="#b91c1c" strokeWidth="1.2" markerEnd="url(#gk-session)"
+        style={getLineStyle(5)}
       />
       <line
         x1={PX + PW + 2}      y1={lcy(6)}
         x2={RCX - RW / 2 - 2} y2={lcy(6)}
-        stroke="#b91c1c" strokeWidth="1.5" strokeDasharray="4 3" markerEnd="url(#gk-session)"
+        stroke="#b91c1c" strokeWidth="1.2" strokeDasharray="3 3" markerEnd="url(#gk-session)"
+        style={getLineStyle(5)}
       />
 
-      {/* ── Right: OTel / Prometheus → layers 7 & 8 ── */}
-      <rect
-        x={RCX - RW / 2} y={otelTop} width={RW} height={otelH} rx="4"
-        fill="rgba(4,120,87,0.05)" stroke="#047857" strokeWidth="1.5"
-      />
-      <text x={RCX} y={otelMidY + 5} textAnchor="middle" fill="#065f46" fontSize="9" fontWeight="700">
-        OTel · Prometheus
-      </text>
+      {/* ── Right: OTel / Prometheus ── */}
+      <g style={getStyle(6)}>
+        <rect
+          x={RCX - RW / 2} y={otelTop} width={RW} height={otelH} rx="8"
+          fill="#070a13" stroke="#047857" strokeWidth={activeStep === 6 ? 2 : 1}
+        />
+        <text x={RCX} y={otelMidY + 4} textAnchor="middle" fill="#34d399" fontSize="10" fontWeight="700">
+          📊 OTel · Metrics
+        </text>
+      </g>
       <line
         x1={PX + PW + 2}      y1={lcy(7)}
         x2={RCX - RW / 2 - 2} y2={lcy(7)}
-        stroke="#047857" strokeWidth="1.5" markerEnd="url(#gk-obs)"
+        stroke="#047857" strokeWidth="1.2" markerEnd="url(#gk-obs)"
+        style={getLineStyle(6)}
       />
       <line
         x1={PX + PW + 2}      y1={lcy(8)}
         x2={RCX - RW / 2 - 2} y2={lcy(8)}
-        stroke="#047857" strokeWidth="1.5" markerEnd="url(#gk-obs)"
+        stroke="#047857" strokeWidth="1.2" markerEnd="url(#gk-obs)"
+        style={getLineStyle(6)}
       />
 
       {/* Legend */}
       {legend.map((item, i) => (
         <g key={i} transform={`translate(${52 + i * 160}, 528)`}>
-          <rect width="10" height="10" y="1" rx="2" fill={item.c} />
-          <text x="15" y="10" fill="#475569" fontSize="9" fontWeight="600">{item.t}</text>
+          <rect width="10" height="10" y="1" rx="3" fill={item.c} />
+          <text x="15" y="10" fill="#94a3b8" fontSize="10" fontWeight="600">{item.t}</text>
         </g>
       ))}
 
       <text
         x={CX} y="550"
-        fill="#94a3b8" fontSize="8.5" fontWeight="900" letterSpacing="1.5" textAnchor="middle"
+        fill="#475569" fontSize="9" fontWeight="700" letterSpacing="1.5" textAnchor="middle"
       >
-        GATEKEEPER // MIDDLEWARE_PIPELINE_SEQUENCE // VER 4.0.0
+        Gatekeeper Middleware Pipeline · v4.0.0
       </text>
     </svg>
   );
 }
+
