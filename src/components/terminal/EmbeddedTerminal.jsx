@@ -306,7 +306,7 @@ export default function EmbeddedTerminal() {
         push(
           <div className="my-2 flex flex-col gap-1.5 text-[11px]">
             <div><span className="text-[#6366f1] w-12 inline-block">name</span>{DATA.identity.name}</div>
-            <div><span className="text-[#6366f1] w-12 inline-block">role</span>{DATA.identity.model}</div>
+            <div><span className="text-[#6366f1] w-12 inline-block">role</span>{DATA.identity.role}</div>
             <div><span className="text-[#6366f1] w-12 inline-block">title</span>{DATA.identity.title}</div>
             <div><span className="text-[#6366f1] w-12 inline-block">loc</span>{DATA.identity.location}</div>
             <div className="mt-2 text-[#777] max-w-xl leading-relaxed">{DATA.about.description}</div>
@@ -330,7 +330,7 @@ export default function EmbeddedTerminal() {
               <div className="text-[#2a2a2a]">──────────────────────</div>
               <div><span className="text-[#6366f1]">os       </span> dheerajOS v3.0.0</div>
               <div><span className="text-[#6366f1]">shell    </span> dk-shell 1.0</div>
-              <div><span className="text-[#6366f1]">role     </span> {DATA.identity.model}</div>
+              <div><span className="text-[#6366f1]">role     </span> {DATA.identity.role}</div>
               <div><span className="text-[#6366f1]">degree   </span> M.Sc. CS @ RPTU Kaiserslautern</div>
               <div><span className="text-[#6366f1]">focus    </span> Distributed Systems · AI Pipelines</div>
               <div><span className="text-[#6366f1]">location </span> {DATA.identity.location}</div>

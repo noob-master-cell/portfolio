@@ -1,44 +1,121 @@
 @import "tailwindcss";
 
-.font-mono { font-family: 'Fira Code', monospace; }
-.font-sans { font-family: 'Inter', sans-serif; }
+:root {
+  --bg: #0a0a0a;
+  --bg-soft: #111111;
+  --surface: #161616;
+  --border: #1f1f1f;
+  --border-soft: #262626;
+  --text: #ededed;
+  --text-muted: #9ca3af;
+  --text-faint: #6b7280;
+  --accent: #6366f1;
+  --accent-soft: rgba(99, 102, 241, 0.12);
+
+  --container-max: 1200px;
+  --section-px: clamp(1.25rem, 4vw, 3rem);
+  --section-py: clamp(4rem, 8vh, 7rem);
+  --section-h: 100svh;
+  --hero-min-h: 100svh;
+  --gap-block: clamp(2rem, 4vw, 4rem);
+}
+
+.font-mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+.font-sans { font-family: 'Inter', system-ui, sans-serif; }
 
 html, body {
-  background: #030712;
+  background: var(--bg);
+  color: var(--text);
   scroll-behavior: smooth;
-  color: #f3f4f6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; }
+body {
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #4b5563; }
-
-@keyframes drawPath {
-  to { stroke-dashoffset: 0; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-soft);
+  border-radius: 4px;
 }
+::-webkit-scrollbar-thumb:hover { background: #2f2f2f; }
 
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
-}
-
-@keyframes pulse-soft {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.5; }
-}
-
-.animation-pulse {
-  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Ensure native OS cursor is always visible and functional across all elements */
 html, body, #root {
-  cursor: default !important;
+  cursor: default;
 }
 
 a, button, select, input, textarea, [role="button"], .cursor-pointer {
-  cursor: pointer !important;
+  cursor: pointer;
 }
 
+.section-shell {
+  width: 100%;
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+  min-height: var(--section-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .section-shell {
+    min-height: auto;
+  }
+}
+
+.container-shell {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--section-px);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease-out both;
+}
+
+.soft-pulse {
+  animation: softPulse 2.2s ease-in-out infinite;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: fadeOutVT 180ms ease-in both;
+  }
+  ::view-transition-new(root) {
+    animation: fadeInVT 240ms ease-out both;
+  }
+}
+
+@keyframes fadeOutVT {
+  to { opacity: 0; }
+}
+
+@keyframes fadeInVT {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

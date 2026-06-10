@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import './index.css';
 
-import NoiseOverlay from './components/ui/NoiseOverlay';
-import InteractiveBackground from './components/ui/InteractiveBackground';
 import ProfessionalSideNav from './components/ui/ProfessionalSideNav';
+import ScrollProgress from './components/ui/ScrollProgress';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
@@ -15,7 +14,6 @@ import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 
 export default function App() {
-  // Ensure we start at the top on initial visit (if no hash)
   useEffect(() => {
     if (!window.location.hash) {
       window.scrollTo(0, 0);
@@ -23,9 +21,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#030712] text-slate-200 selection:bg-indigo-500 selection:text-white font-sans antialiased">
-      <NoiseOverlay />
-      <InteractiveBackground />
+    <div className="min-h-screen bg-[#0a0a0a] text-neutral-200 font-sans antialiased">
+      <ScrollProgress />
       <ProfessionalSideNav />
       <Navbar />
 
