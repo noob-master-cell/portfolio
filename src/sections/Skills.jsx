@@ -29,7 +29,7 @@ export default function Skills() {
                   {items.map((item, j) => (
                     <span
                       key={j}
-                      className="px-2.5 py-1 text-xs text-neutral-700 bg-white border border-neutral-200 rounded-md"
+                      className="px-2.5 py-1 text-xs text-neutral-700 bg-white border border-neutral-200 rounded-md transition-colors duration-150 hover:border-neutral-400 hover:text-black"
                     >
                       {item}
                     </span>

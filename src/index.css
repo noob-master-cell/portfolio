@@ -52,6 +52,28 @@ a, button, select, input, textarea, [role="button"], .cursor-pointer {
   cursor: pointer;
 }
 
+/* Keyboard focus — visible accent ring (WCAG 2.4.7). Hidden for mouse users. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Respect reduced-motion: kill non-essential animation and smooth scroll */
+@media (prefers-reduced-motion: reduce) {
+  html, body { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .section-shell {
   width: 100%;
   padding-top: var(--section-py);

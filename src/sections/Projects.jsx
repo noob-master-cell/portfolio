@@ -7,6 +7,7 @@ import { DATA } from '../data/content';
 import { Icons } from '../components/ui/Icons';
 import SectionLabel from '../components/ui/SectionLabel';
 
+// eslint-disable-next-line no-unused-vars -- Diagram is used as a JSX element below; the linter lacks react/jsx-uses-vars
 const ProjectScreen = ({ number, slug, title, subtitle, date, description, isDark, Diagram, metrics, tech, links }) => {
   const bgClass = isDark ? 'bg-[#0a0a0a] text-[#ededed]' : 'bg-[#fafafa] text-[#0a0a0a]';
   const borderClass = isDark ? 'border-neutral-900' : 'border-neutral-200';

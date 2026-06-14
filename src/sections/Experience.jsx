@@ -59,7 +59,7 @@ export default function Experience() {
                       {job.tech.map((t, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-2.5 py-1 font-mono text-xs text-neutral-400 border border-neutral-800 rounded-md"
+                          className="px-2.5 py-1 font-mono text-xs text-neutral-400 border border-neutral-800 rounded-md transition-colors duration-150 hover:border-neutral-600 hover:text-neutral-200"
                         >
                           {t}
                         </span>

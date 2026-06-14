@@ -54,7 +54,7 @@ export default function Contact() {
                 href={method.url}
                 target={method.label !== 'Phone' && method.label !== 'Email' ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between p-4 border border-neutral-900 hover:border-neutral-700 rounded-lg transition-colors"
+                className="group flex items-center justify-between p-4 border border-neutral-900 hover:border-neutral-700 hover:bg-white/[0.02] rounded-lg transition-colors duration-200"
               >
                 <div className="flex items-center gap-3">
                   <method.icon width={16} height={16} className="text-neutral-500 group-hover:text-white transition-colors" />
@@ -67,7 +67,7 @@ export default function Contact() {
                     </div>
                   </div>
                 </div>
-                <Icons.ArrowUpRight width={14} height={14} className="text-neutral-600 group-hover:text-white transition-colors" />
+                <Icons.ArrowUpRight width={14} height={14} className="text-neutral-600 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
               </a>
             ))}
           </div>

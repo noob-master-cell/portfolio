@@ -141,7 +141,7 @@ export default function SystemHUDSidebar() {
       <div className="flex flex-col items-end gap-4 pointer-events-auto">
         <div className="w-[1px] h-12 bg-gradient-to-b from-transparent to-white/10" />
         
-        {sections.map((sec, idx) => {
+        {sections.map((sec) => {
           const isActive = activeSection === sec;
           return (
             <a

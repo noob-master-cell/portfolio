@@ -64,7 +64,7 @@ export default function About() {
                 {DATA.coursework.map((course, i) => (
                   <span
                     key={i}
-                    className="text-xs text-neutral-700 px-2.5 py-1 bg-white border border-neutral-200 rounded-md"
+                    className="text-xs text-neutral-700 px-2.5 py-1 bg-white border border-neutral-200 rounded-md transition-colors duration-150 hover:border-neutral-400 hover:text-black"
                   >
                     {course}
                   </span>

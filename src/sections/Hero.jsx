@@ -7,6 +7,26 @@ import { Icons } from '../components/ui/Icons';
 export default function Hero() {
   const [ref, isVisible] = useIntersectionObserver();
   const [showTerminal, setShowTerminal] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleGetInTouch = async () => {
+    const email = DATA.identity.email;
+
+    // Copy to clipboard as a reliable fallback for users without a
+    // configured default mail client (where mailto: silently does nothing).
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email);
+        setEmailCopied(true);
+        setTimeout(() => setEmailCopied(false), 2000);
+      }
+    } catch {
+      // Clipboard may be unavailable (e.g. non-secure context); ignore.
+    }
+
+    // Still attempt to open the mail client for users who have one.
+    window.location.href = `mailto:${email}`;
+  };
 
   useEffect(() => {
     const handle = (e) => {
@@ -52,20 +72,21 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-3 items-center mb-12">
-            <a
-              href={`mailto:${DATA.identity.email}`}
-              className="px-5 py-2.5 bg-white text-black font-medium text-sm rounded-md flex items-center gap-2 hover:bg-neutral-200 transition-colors"
+            <button
+              type="button"
+              onClick={handleGetInTouch}
+              className="min-h-11 px-5 py-2.5 bg-white text-black font-medium text-sm rounded-md flex items-center gap-2 hover:bg-neutral-200 transition-colors cursor-pointer"
             >
               <Icons.Mail width={14} height={14} />
-              Get in touch
-            </a>
+              {emailCopied ? 'Email copied!' : 'Get in touch'}
+            </button>
 
             {DATA.identity.resume && (
               <a
                 href={DATA.identity.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-transparent border border-neutral-800 text-neutral-300 font-medium text-sm rounded-md flex items-center gap-2 hover:border-neutral-600 hover:text-white transition-colors"
+                className="min-h-11 px-5 py-2.5 bg-transparent border border-neutral-800 text-neutral-300 font-medium text-sm rounded-md flex items-center gap-2 hover:border-neutral-600 hover:text-white transition-colors"
               >
                 <Icons.Download width={14} height={14} />
                 Resume
@@ -74,7 +95,7 @@ export default function Hero() {
 
             <button
               onClick={() => setShowTerminal(true)}
-              className="px-5 py-2.5 bg-transparent border border-neutral-800 text-neutral-300 font-medium text-sm rounded-md flex items-center gap-2 hover:border-neutral-600 hover:text-white transition-colors cursor-pointer"
+              className="min-h-11 px-5 py-2.5 bg-transparent border border-neutral-800 text-neutral-300 font-medium text-sm rounded-md flex items-center gap-2 hover:border-neutral-600 hover:text-white transition-colors cursor-pointer"
             >
               <Icons.Terminal width={14} height={14} />
               Open terminal
