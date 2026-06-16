@@ -3,7 +3,7 @@ export const DATA = {
     name: "Dheeraj Karwasra",
     role: "Software Engineer",
     title: "Software Engineer, M.Sc. CS at RPTU",
-    tagline: "I build backend systems and AI pipelines. I focus on clean code, good measurements, and shipping things that work in production.",
+    tagline: "I build backend systems and AI pipelines. I care about clean code, real numbers, and shipping things that work in production.",
     availability: "I am looking for Software Engineer, Backend Engineer, or AI Engineer roles in Germany and the EU. If you think we could be a good fit, send me a message.",
     location: "Kaiserslautern, Germany",
     email: "karwasra.dheeraj28@gmail.com",
@@ -16,8 +16,8 @@ export const DATA = {
     resume: "/Dheeraj_Karwasra_Resume.pdf"
   },
   about: {
-    quote: "I am doing my M.Sc. in Computer Science at RPTU Kaiserslautern. My focus is distributed systems, AI pipelines, and cloud native architecture.",
-    description: "At Fraunhofer I built multi agent AI systems that removed hours of manual work each week. At HighRadius I built ML models that improved how finance teams forecast cash flow. I like engineering that moves a number, not just code that runs.",
+    quote: "I am doing my M.Sc. in Computer Science at RPTU Kaiserslautern. Most of my work is in distributed systems, AI pipelines, and building things that run in the cloud.",
+    description: "At Fraunhofer I built AI systems that took hours of manual work off the team every week. At HighRadius I built models that helped finance teams forecast cash flow more accurately. I like work that moves a real number, not just code that runs.",
     skills: [
       { category: "Languages", items: "Python, TypeScript, JavaScript, C++, SQL, Java" },
       { category: "Backend and Cloud", items: "FastAPI, Node.js, NestJS, GraphQL, AWS, Docker, CI/CD, Git" },
@@ -34,10 +34,10 @@ export const DATA = {
       role: "Software Developer, AI and Automation",
       date: "Sep 2025 to Feb 2026",
       logs: [
-        "Built a multi agent AI pipeline with CrewAI that classified and routed documents across three departments. It removed 80 percent of the manual review work the team used to do by hand.",
-        "Made the orchestration layer fault tolerant. It picks up anomalies during a run and recovers on its own. Downtime under concurrent load dropped by 9x.",
-        "Built the internal tool that replaced a 6 step approval workflow with a single click. React on the front, FastAPI on the back, PostgreSQL underneath.",
-        "Added real time monitoring and structured logging so the team could see pipeline health as it happened, not after something broke."
+        "Built an AI pipeline with CrewAI that sorted and routed documents across three departments. It cut the manual review work by 80 percent.",
+        "Made the pipeline recover on its own when a step fails. It catches problems while running and keeps going instead of crashing. Downtime under heavy load dropped 9x.",
+        "Built an internal tool that turned a six step approval process into a single click. React on the front, FastAPI on the back, PostgreSQL underneath.",
+        "Added live monitoring and logging so the team could watch the pipeline's health as it ran, instead of finding out after something broke."
       ],
       tech: ["Python", "CrewAI", "FastAPI", "React", "PostgreSQL", "Docker"]
     },
@@ -47,9 +47,9 @@ export const DATA = {
       role: "Software Developer Intern, Machine Learning",
       date: "Jan 2022 to Apr 2022",
       logs: [
-        "Built an ensemble model using Random Forest and XGBoost to predict when B2B invoices would be paid. It hit 89 percent accuracy on production data.",
-        "That accuracy translated to a 19 percent improvement in cash flow forecasting for Fortune 500 finance teams.",
-        "Preprocessed 500K plus invoice records and built feature engineering pipelines that handled messy real world data, including automated outlier detection."
+        "Built a model that combined Random Forest and XGBoost to predict when B2B invoices would get paid. It reached 89 percent accuracy on real production data.",
+        "That helped Fortune 500 finance teams forecast their cash flow 19 percent more accurately.",
+        "Cleaned and prepared more than 500,000 invoice records, including spotting outliers on its own, so the model could learn from messy real world data."
       ],
       tech: ["Python", "scikit-learn", "XGBoost", "pandas", "SQL"]
     }
@@ -63,8 +63,8 @@ export const DATA = {
     {
       slug: "nexus",
       title: "Nexus",
-      subtitle: "Local RAG with agentic routing",
-      description: "Nexus is a RAG system where nothing leaves your machine. Every step runs locally through Ollama. The retrieval pipeline has 7 stages including HyDE query expansion, hybrid search that combines dense vectors with BM25, RRF score fusion, MMR re ranking, agentic routing for complex queries, and a faithfulness check at the end. No cloud calls. No data exposure.",
+      subtitle: "A private RAG system that runs fully on your machine",
+      description: "Nexus is a RAG system where nothing leaves your machine. Every step runs locally through Ollama. It answers a question in seven steps: it writes a draft answer to widen the search (HyDE), runs both keyword search (BM25) and meaning based search, merges the two result lists, drops passages that repeat the same point, sends harder questions down a longer path, and checks the final answer against the sources before showing it. No cloud calls. No data leaving your laptop.",
       date: "Apr 2026 to Present",
       isDark: true,
       diagramType: "nexus",
@@ -78,26 +78,26 @@ export const DATA = {
         { label: "GitHub Repository", url: "https://github.com/noob-master-cell/Nexus-Agentic-Document-Intelligence" }
       ],
       caseStudy: {
-        problem: "Most RAG systems push your data to a cloud LLM and call it private. I wanted one that runs entirely on a laptop, retrieves with the quality of a hosted system, and gives an honest answer about whether it is making things up.",
-        approach: "I split the pipeline into 7 explicit stages so I could test each one in isolation. HyDE generates a synthetic answer first to widen the search window. Dense vectors handle semantics, BM25 handles exact terms, and Reciprocal Rank Fusion merges both lists. MMR then trims passages that say the same thing in slightly different words. An agentic router decides whether a query needs the full pipeline or a fast path. A faithfulness check at the end flags answers that drifted from the source.",
+        problem: "Most RAG systems send your data to a cloud model and still call it private. I wanted one that runs fully on a laptop, finds answers as well as a hosted system, and is honest about when it might be making things up.",
+        approach: "I split the work into seven separate steps so I could test each one on its own. First it writes a draft answer (HyDE) to widen the search. Keyword search handles exact terms, meaning based search handles the rest, and the two lists get merged into one. It then removes passages that repeat the same point. A router checks whether a question needs the full pipeline or a quick path. At the end, it compares the answer against the sources it used and flags anything that drifted away from them.",
         decisions: [
-          { title: "Local first", body: "ChromaDB and Ollama only. No outbound network calls. Trade off: I lose access to the strongest hosted models, but users get full privacy and no per token cost." },
-          { title: "Hybrid retrieval", body: "Pure vector search missed exact identifiers like part numbers. Adding BM25 with RRF fusion fixed that without hurting semantic recall." },
-          { title: "Faithfulness as a gate", body: "Instead of trusting the LLM output, I score it against the retrieved passages. Low scores get a warning so the user knows when to double check." }
+          { title: "Local first", body: "ChromaDB and Ollama only, with nothing going out to the internet. The trade off: I give up the strongest hosted models, but users get full privacy and pay nothing per question." },
+          { title: "Two kinds of search", body: "Meaning based search on its own missed exact things like part numbers. Adding keyword search and merging the two lists fixed that without hurting the rest." },
+          { title: "Check before trusting", body: "Instead of trusting whatever the model says, I score the answer against the passages it used. A low score shows a warning so the reader knows when to double check." }
         ],
         outcomes: [
-          "7 stage pipeline with sub second p95 retrieval on a 50k chunk corpus.",
-          "Faithfulness score averaged 0.95 on the eval set.",
-          "Runs on a single laptop with no GPU. Ollama handles inference, ChromaDB persists vectors."
+          "Seven step pipeline with under a second retrieval (p95) on a 50,000 chunk set.",
+          "The honesty score averaged 0.95 on the test set.",
+          "Runs on a single laptop with no GPU. Ollama does the thinking, ChromaDB stores the data."
         ],
-        learnings: "The biggest unlock was treating retrieval as a system, not a one shot embedding lookup. Each stage is small and replaceable. If I built this again I would add a query cache and let users tune the MMR lambda from the UI."
+        learnings: "The biggest win was treating retrieval as a full system, not a single lookup. Each step is small and easy to swap out. If I built it again I would add a cache for repeated questions and let users adjust the duplicate filter right from the screen."
       }
     },
     {
       slug: "gatekeeper",
       title: "Gatekeeper",
-      subtitle: "Zero trust reverse proxy gateway",
-      description: "Most API gateways check authentication once at the door. Gatekeeper checks every request. It is a 9 layer middleware pipeline with RS256 JWT validation, automatic JWKS rotation, per IP and per key rate limiting, an OPA policy engine that runs Rego rules, Redis backed session revocation, and OpenTelemetry tracing with Prometheus metrics per route. It handles 3.3k requests per second at 47ms p95 with full auth on every hop.",
+      subtitle: "An API gateway that checks every single request",
+      description: "Most API gateways check who you are once, when you log in. Gatekeeper checks every request. Each one passes through nine steps in order: it verifies the signed token, rotates the keys on its own, limits how often each IP and key can call, runs access rules through OPA, checks whether the session has been cancelled in Redis, and records timing and traces for every route. It handles 3,300 requests per second at 47ms (p95) with full checks on every hop.",
       date: "Jan 2025 to Present",
       isDark: false,
       diagramType: "gatekeeper",
@@ -112,26 +112,26 @@ export const DATA = {
         { label: "Live Dashboard", url: "https://dashboard-production-5a2f.up.railway.app/" }
       ],
       caseStudy: {
-        problem: "Standard API gateways trust a session once it is signed in. That breaks the moment a token leaks, a session is revoked, or a policy changes mid request. I wanted a gateway that re verifies every request without falling off a performance cliff.",
-        approach: "I built a 9 layer middleware pipeline in FastAPI. Each layer is a small, ordered async step. JWT validation pulls JWKS from a rotating cache. Rate limiting runs against a per IP and per key Redis bucket. OPA evaluates Rego policies on the request context. A revocation index checks Redis for invalidated sessions. OpenTelemetry traces every hop, and Prometheus exports per route latency.",
+        problem: "Most gateways trust a session once it signs in. That falls apart the moment a token leaks, a session is cancelled, or a rule changes in the middle of a request. I wanted a gateway that re checks every request without becoming slow.",
+        approach: "I built a pipeline of nine small steps in FastAPI, each one running in order. It checks the signed token against keys it keeps fresh in a cache. It limits how often each IP and key can call, using counters in Redis. OPA decides whether the request is allowed. A quick Redis lookup catches cancelled sessions. Every step is timed and traced so I can see exactly where the time goes.",
         decisions: [
-          { title: "FastAPI over a Go gateway", body: "I wanted to iterate fast on the policy and observability layers. Python plus uvloop gave enough throughput for the workload, and the async middleware model is easy to reason about." },
-          { title: "OPA for policy", body: "Encoding access rules in Rego kept the auth logic out of the application code. Operators can update policies without redeploying the gateway." },
-          { title: "Redis for revocation", body: "An in memory revocation index keeps token invalidation under a millisecond. Worth the extra dependency for the security guarantee." }
+          { title: "FastAPI over a Go gateway", body: "I wanted to move fast on the rules and the monitoring. Python with uvloop was fast enough for this load, and the step by step async model is easy to follow." },
+          { title: "OPA for the rules", body: "Writing access rules in OPA kept them out of the app code. Operators can change a rule without redeploying the gateway." },
+          { title: "Redis for cancelled sessions", body: "An in memory list keeps session cancellation under a millisecond. Worth the extra moving part for the security it buys." }
         ],
         outcomes: [
-          "3.3k requests per second at 100 virtual users with full auth on every request.",
-          "47ms p95 end to end with all 9 layers active.",
-          "Token revocation propagates in under 1ms across all replicas through Redis pub sub."
+          "3,300 requests per second at 100 users, with full checks on every request.",
+          "47ms p95 from end to end with all nine steps running.",
+          "A cancelled token takes effect in under 1ms across every copy of the service, through Redis."
         ],
-        learnings: "Most of the optimization came from caching the JWKS keys and pooling the Redis client. The Rego evaluation was never the bottleneck. Next iteration I would move the rate limiter to a sliding window log so burst behavior is smoother."
+        learnings: "Most of the speed came from caching the keys and reusing the Redis connection. The rule engine was never the slow part. Next time I would smooth out how it handles sudden bursts of traffic."
       }
     },
     {
       slug: "esn-platform",
       title: "ESN Event Platform",
-      subtitle: "Central management for student associations",
-      description: "ESN Kaiserslautern was managing events with scattered tools. I built them a single platform. The stack is a decoupled monorepo with a NestJS GraphQL backend and a React 19 frontend. A custom query complexity guard stops clients from sending expensive nested queries. Redis rate limiting is tiered by user role. The result was a 9x drop in database load and O(1) query performance on the most common operations.",
+      subtitle: "One place to manage events for a student group",
+      description: "ESN Kaiserslautern was running events out of a pile of separate tools. I built them one platform instead. It has a NestJS GraphQL backend and a React 19 frontend. A custom check stops clients from sending heavy, deeply nested queries that would slow everything down. Redis caching and rate limits change based on the user's role. Database load dropped 9x and the most common requests now return in constant time.",
       date: "Aug 2024 to Nov 2024",
       isDark: true,
       diagramType: "performance",
@@ -146,44 +146,44 @@ export const DATA = {
         { label: "Live Portal", url: "https://esn-kaiserslautern.vercel.app/" }
       ],
       caseStudy: {
-        problem: "ESN Kaiserslautern was coordinating events across spreadsheets, group chats, and three different tools. Volunteers spent more time syncing data than running events. They needed a single platform but also needed it to stay cheap and fast under bursty student traffic.",
-        approach: "I picked NestJS GraphQL because the data model has heavy relationships and the team needed flexible queries. Prisma generates the SQL. I wrote a custom query complexity guard that scores each incoming query and rejects anything past the budget. Redis caches hot queries by hash, and rate limits are tiered per user role.",
+        problem: "ESN Kaiserslautern was running events across spreadsheets, group chats, and three different tools. Volunteers spent more time copying data between them than actually running events. They needed one platform, and it had to stay cheap and fast when student traffic spiked.",
+        approach: "I chose NestJS with GraphQL because the data has a lot of connections and the team needed to query it in flexible ways. Prisma writes the SQL. I added a custom check that scores each incoming query and turns away anything too expensive. Redis caches the popular queries, and rate limits depend on the user's role.",
         decisions: [
-          { title: "Custom complexity guard", body: "Off the shelf depth limiters were too blunt. I scored each field, totaled the score per query, and rejected the request if it exceeded the budget. Stopped expensive nested fetches without rejecting legitimate queries." },
-          { title: "Cache by query hash", body: "Most reads are the same event list and roster. Caching by hashed query plus variables gave a 9x drop in database load with a 5 minute TTL." },
-          { title: "Auth0 for identity", body: "The team did not need custom auth and Auth0 took identity off my plate. Worth the dependency for a volunteer maintained app." }
+          { title: "Custom complexity check", body: "Ready made limiters were too blunt. I gave each field a score, added them up per query, and rejected the query if it went over budget. That blocked the expensive nested requests without blocking normal ones." },
+          { title: "Cache by query", body: "Most reads are the same event list and member list. Caching them with a five minute refresh cut database load 9x." },
+          { title: "Auth0 for login", body: "The team did not need custom login, so Auth0 handled it. Worth the dependency for an app run by volunteers." }
         ],
         outcomes: [
-          "9x reduction in database load measured against the previous spreadsheet driven flow.",
-          "Common reads hit cache and return in under 5ms.",
-          "Query complexity budget caught 100 percent of intentionally expensive test queries without false positives."
+          "9x less database load than the old spreadsheet based way of working.",
+          "Common reads come back from cache in under 5ms.",
+          "The query budget caught every expensive test query without ever blocking a real one."
         ],
-        learnings: "If I built this again I would skip GraphQL. The flexibility was worth less than I thought and tRPC would have shipped faster with the same safety. The complexity guard is the part I am most proud of and the one I would keep."
+        learnings: "If I built this again I would skip GraphQL. The flexibility mattered less than I expected, and tRPC would have been faster to build with the same safety. The complexity check is the part I am most proud of and the one I would keep."
       }
     }
   ],
   otherProjects: [
     {
       title: "LocalMart",
-      description: "A community marketplace for buying, selling, and posting lost and found items. Built with React and Firebase. Auth, Firestore, and storage handled without a separate backend.",
+      description: "A community marketplace for buying, selling, and posting lost and found items. Built with React and Firebase, so login, the database, and file storage all work without a separate backend.",
       tech: "React, Vite, Tailwind, Firebase",
       link: "https://github.com/noob-master-cell/LocalMart"
     },
     {
       title: "ByteSphere",
-      description: "A full stack blog platform I built to get hands on with Node.js and MongoDB. Users can write, manage, and publish posts.",
+      description: "A full stack blog I built to get hands on with Node.js and MongoDB. People can write, edit, and publish posts.",
       tech: "JavaScript, Node.js, MongoDB",
       link: "https://github.com/noob-master-cell/ByteSphere"
     },
     {
       title: "Student Predictor",
-      description: "An ML model that predicts student exam scores using ensemble methods. I added a Flask interface so predictions are one form submission away.",
+      description: "A model that predicts student exam scores. I wrapped it in a small Flask page so a prediction is one form away.",
       tech: "Python, scikit-learn, Flask",
       link: "https://github.com/noob-master-cell/StudentPerformancePredictor"
     },
     {
       title: "Path Finder",
-      description: "A grid based visualizer for pathfinding algorithms. It covers Dijkstra, A*, BFS, and DFS. Watching them run made the differences click.",
+      description: "A grid based tool that shows how pathfinding algorithms work, including Dijkstra, A*, BFS, and DFS. Watching them run side by side made the differences click.",
       tech: "JavaScript, React, Algorithms",
       link: "https://github.com/noob-master-cell/Path-Finder"
     }
